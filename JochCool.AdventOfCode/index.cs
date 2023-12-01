@@ -10,6 +10,7 @@ if (args.Length < 3)
 {
 	"2020" => JochCool.AdventOfCode.Year2020.Solutions.Get(int.Parse(args[1])),
 	"2022" => JochCool.AdventOfCode.Year2022.Solutions.Get(int.Parse(args[1])),
+	"2023" => JochCool.AdventOfCode.Year2023.Solutions.Get(int.Parse(args[1])),
 	_ => throw new ArgumentException(null, nameof(args))
 };
 
