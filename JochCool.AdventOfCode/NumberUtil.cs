@@ -38,4 +38,27 @@ static class NumberUtil
 		}
 		return result;
 	}
+
+	public static BigInteger Sqrt(BigInteger value)
+	{
+		BigInteger estimate = value >> (int)BigInteger.Log2(value);
+		while (true)
+		{
+			BigInteger product = estimate * estimate;
+			BigInteger difference = value - product;
+			if (difference == 0)
+			{
+				return estimate;
+			}
+
+			BigInteger estimateChange = (difference / estimate) >> 1;
+			if (estimateChange == 0)
+			{
+				if (difference < 0) estimate--;
+				return estimate;
+			}
+
+			estimate += estimateChange;
+		}
+	}
 }

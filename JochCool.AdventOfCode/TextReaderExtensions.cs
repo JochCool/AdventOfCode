@@ -2,6 +2,11 @@ namespace JochCool.AdventOfCode;
 
 static class TextReaderExtensions
 {
+	public static string ReadLineOrThrow(this TextReader reader)
+	{
+		return reader.ReadLine() ?? throw new EndOfStreamException();
+	}
+
 	public static IEnumerable<string> ReadLines(this TextReader reader)
 	{
 		string? line;
