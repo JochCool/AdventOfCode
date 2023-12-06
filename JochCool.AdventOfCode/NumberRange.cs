@@ -1,18 +1,24 @@
 namespace JochCool.AdventOfCode;
 
-public class NumberRange
+public class NumberRange<T> where T : IBinaryInteger<T>
 {
-	int minInclusive;
-	int maxInclusive;
+	T minInclusive;
+	T maxInclusive;
 
-	public NumberRange(int minInclusive, int maxInclusive)
+	public NumberRange(T minInclusive, T maxInclusive)
 	{
 		ThrowIfMinMaxAreWrong(minInclusive, maxInclusive);
 		this.minInclusive = minInclusive;
 		this.maxInclusive = maxInclusive;
 	}
 
-	public int MinInclusive
+	protected NumberRange(NumberRange<T> other)
+	{
+		minInclusive = other.minInclusive;
+		maxInclusive = other.maxInclusive;
+	}
+
+	public T MinInclusive
 	{
 		get => minInclusive;
 		set
@@ -22,7 +28,7 @@ public class NumberRange
 		}
 	}
 
-	public int MaxInclusive
+	public T MaxInclusive
 	{
 		get => maxInclusive;
 		set
@@ -32,21 +38,37 @@ public class NumberRange
 		}
 	}
 
-	public int MaxExclusive
+	public T MaxExclusive
 	{
-		get => MaxInclusive + 1;
-		set => MaxInclusive = value - 1;
+		get => MaxInclusive + T.One;
+		set => MaxInclusive = value - T.One;
 	}
 
-	public int MinExclusive
+	public T MinExclusive
 	{
-		get => MinInclusive - 1;
-		set => MinInclusive = value + 1;
+		get => MinInclusive - T.One;
+		set => MinInclusive = value + T.One;
 	}
 
-	public int Size => maxInclusive - minInclusive + 1;
+	public T Size => maxInclusive - minInclusive + T.One;
 
-	internal static void ThrowIfMinMaxAreWrong(int minInclusive, int maxInclusive, string? paramName = null)
+	public void Shift(T amount)
+	{
+		checked
+		{
+			minInclusive += amount;
+			maxInclusive += amount;
+		}
+	}
+
+	public virtual NumberRange<T> Clone() => new(this);
+
+	public override string ToString()
+	{
+		return $"[{minInclusive},{maxInclusive}]";
+	}
+
+	internal static void ThrowIfMinMaxAreWrong(T minInclusive, T maxInclusive, string? paramName = null)
 	{
 		if (minInclusive > maxInclusive)
 		{

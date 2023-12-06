@@ -8,7 +8,7 @@ public static class Part1
 		HashSet<int> beaconXs = [];
 
 		//List<TaxicabCircle> sensors = new();
-		BrokenNumberRange xs = new();
+		BrokenNumberRange<int> xs = new();
 
 		foreach (string line in inputReader.ReadLines())
 		{
@@ -31,7 +31,7 @@ public static class Part1
 			int radius = (sensorPos - new Vector<int>(beaconX, beaconY)).TaxicabMagnitude;
 
 			int halfWidth = radius - int.Abs(sensorPos.Y - targetY);
-			if (halfWidth >= 0) xs.Add(sensorPos.X - halfWidth, sensorPos.X + halfWidth);
+			if (halfWidth >= 0) xs.AddRange(sensorPos.X - halfWidth, sensorPos.X + halfWidth);
 
 			/*
 			TaxicabCircle newSensor = new(sensorPos, radius);
