@@ -23,8 +23,13 @@ static void ExecutePart(Solution solution, string filePath, int num)
 	Console.WriteLine($"======== PART {num}");
 
 	using StreamReader inputReader = new(File.OpenRead(filePath));
+
+	Stopwatch stopwatch = new();
+	stopwatch.Start();
 	string? result = solution(inputReader);
+	stopwatch.Stop();
 
 	Console.WriteLine("========");
 	Console.WriteLine(result is null ? "There is no result." : $"Result: {result}");
+	Console.WriteLine($"Elapsed time: {stopwatch.Elapsed}");
 }
