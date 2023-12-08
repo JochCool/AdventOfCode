@@ -61,4 +61,20 @@ static class NumberUtil
 			estimate += estimateChange;
 		}
 	}
+
+	// Calculates greates common divisor using the Euclidean algorithm. Inputs should be positive.
+	public static T Gcd<T>(T a, T b) where T : INumber<T>
+	{
+		do
+		{
+			(a, b) = (b, a % b);
+		}
+		while (!T.IsZero(b));
+		return a;
+	}
+
+	public static T Lcm<T>(T a, T b) where T : INumber<T>
+	{
+		return a / Gcd(a, b) * b;
+	}
 }

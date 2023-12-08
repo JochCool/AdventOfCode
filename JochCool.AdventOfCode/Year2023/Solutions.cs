@@ -13,7 +13,8 @@ public static class Solutions
 			5 => (Day05.Part1.Solve, Day05.Part2.Solve),
 			6 => (Day06.Part1.Solve, Day06.Part2.Solve),
 			7 => (Day07.Part1.Solve, Day07.Part2.Solve),
-			> 7 and <= 25 => throw new NotImplementedException("This puzzle is yet to be solved."),
+			8 => (Day08.Part1.Solve, Day08.Part2.Solve),
+			> 8 and <= 25 => throw new NotImplementedException("This puzzle is yet to be solved."),
 			_ => throw new ArgumentException($"{day} is not a puzzle day!", nameof(day))
 		};
 	}

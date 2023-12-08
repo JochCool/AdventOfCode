@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day13;
+namespace JochCool.AdventOfCode.Year2020.Day13;
 
 public static class Part2
 {
@@ -25,7 +25,7 @@ public static class Part2
 			if (currentBusStr == "x") goto Continue;
 
 			int currentBusNum = int.Parse(currentBusStr);
-			int gdc = Gcd(currentBusNum, frequency);
+			int gdc = NumberUtil.Gcd(currentBusNum, frequency);
 
 			_ = offset - i;
 
@@ -40,18 +40,6 @@ public static class Part2
 		Console.WriteLine($"Result: ");
 
 		throw new NotImplementedException();
-	}
-
-	// Calculates greates common divisor using the Euclidean algorithm. Inputs should be positive.
-	static int Gcd(int a, int b)
-	{
-		do
-		{
-			int temp = b;
-			b = a % b;
-			a = temp;
-		} while (b != 0);
-		return a;
 	}
 }
 
