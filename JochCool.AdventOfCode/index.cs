@@ -1,4 +1,5 @@
 using JochCool.AdventOfCode;
+using System.Diagnostics;
 
 if (args.Length < 3)
 {
