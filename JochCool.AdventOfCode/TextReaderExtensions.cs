@@ -49,4 +49,26 @@ static class TextReaderExtensions
 		}
 		return result;
 	}
+
+	public static IEnumerable<string[]> ReadLineGroups(this TextReader reader)
+	{
+		List<string> group = [];
+		string? line;
+		while ((line = reader.ReadLine()) is not null)
+		{
+			if (line.Length == 0)
+			{
+				if (group.Count != 0)
+					yield return group.ToArray();
+
+				group.Clear();
+				continue;
+			}
+
+			group.Add(line);
+		}
+
+		if (group.Count != 0)
+			yield return group.ToArray();
+	}
 }
