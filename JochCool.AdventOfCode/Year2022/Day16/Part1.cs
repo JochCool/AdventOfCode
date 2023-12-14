@@ -16,7 +16,7 @@ public static class Part1
 			int name = BothParts.IdFromName(line.AsSpan(i, 2));
 
 			i = "Valve AA has flow rate=".Length;
-			int flowRate = NumberUtil.ParseAt<int>(line, ref i, ';');
+			int flowRate = ParseUtil.ParseAt<int>(line, ref i, ';');
 
 			i += "; tunnel lead to valve".Length;
 			i = line.IndexOf(' ', i) + 1;

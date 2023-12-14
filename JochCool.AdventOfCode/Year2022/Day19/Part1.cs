@@ -32,7 +32,7 @@ static class Part1
 		foreach (string line in inputReader.ReadLines())
 		{
 			int i = "Blueprint ".Length;
-			int blueprintNum = NumberUtil.ParseAt<int>(line, ref i, ':');
+			int blueprintNum = ParseUtil.ParseAt<int>(line, ref i, ':');
 
 			ResourceType[] resourceTypes =
 			[
@@ -43,20 +43,20 @@ static class Part1
 			];
 
 			i += ": Each ore robot costs ".Length;
-			resourceTypes[0].OreCost = NumberUtil.ParseAt<int>(line, ref i, ' ');
+			resourceTypes[0].OreCost = ParseUtil.ParseAt<int>(line, ref i, ' ');
 
 			i += " ore. Each clay robot costs ".Length;
-			resourceTypes[1].OreCost = NumberUtil.ParseAt<int>(line, ref i, ' ');
+			resourceTypes[1].OreCost = ParseUtil.ParseAt<int>(line, ref i, ' ');
 
 			i += " ore. Each obsidian robot costs ".Length;
-			resourceTypes[2].OreCost = NumberUtil.ParseAt<int>(line, ref i, ' ');
+			resourceTypes[2].OreCost = ParseUtil.ParseAt<int>(line, ref i, ' ');
 			i += " ore and ".Length;
-			resourceTypes[2].SecondaryCost = NumberUtil.ParseAt<int>(line, ref i, ' ');
+			resourceTypes[2].SecondaryCost = ParseUtil.ParseAt<int>(line, ref i, ' ');
 
 			i += " clay. Each geode robot costs ".Length;
-			resourceTypes[3].OreCost = NumberUtil.ParseAt<int>(line, ref i, ' ');
+			resourceTypes[3].OreCost = ParseUtil.ParseAt<int>(line, ref i, ' ');
 			i += " ore and ".Length;
-			resourceTypes[3].SecondaryCost = NumberUtil.ParseAt<int>(line, ref i, ' ');
+			resourceTypes[3].SecondaryCost = ParseUtil.ParseAt<int>(line, ref i, ' ');
 
 			int bestGeodeCount = FindMostGeodes(resourceTypes);
 			Console.WriteLine($"Blueprint {blueprintNum}: {bestGeodeCount} geodes");

@@ -13,11 +13,11 @@ public static class Part2
 		foreach (string line in inputReader.ReadLines())
 		{
 			int i = 0;
-			int x = NumberUtil.ParseAt<int>(line, ref i, ',') + 1;
+			int x = ParseUtil.ParseAt<int>(line, ref i, ',') + 1;
 			i++;
-			int y = NumberUtil.ParseAt<int>(line, ref i, ',') + 1;
+			int y = ParseUtil.ParseAt<int>(line, ref i, ',') + 1;
 			i++;
-			int z = NumberUtil.ParseAt<int>(line, ref i, ',') + 1;
+			int z = ParseUtil.ParseAt<int>(line, ref i, ',') + 1;
 
 			space[x, y, z] = Cube.Lava;
 		}

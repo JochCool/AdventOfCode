@@ -9,15 +9,6 @@ static class NumberUtil
 		return result;
 	}
 
-	internal static T ParseAt<T>(string input, ref int index, char terminator, IFormatProvider? provider = null) where T : ISpanParsable<T>
-	{
-		int endIndex = input.IndexOf(terminator, index);
-		if (endIndex == -1) endIndex = input.Length;
-		ReadOnlySpan<char> toParse = input.AsSpan(index, endIndex - index);
-		index = endIndex;
-		return T.Parse(toParse, provider);
-	}
-
 	internal static T Sum<T>(ReadOnlySpan<T> values) where T : IAdditionOperators<T, T, T>, IAdditiveIdentity<T, T>
 	{
 		T result = T.AdditiveIdentity;

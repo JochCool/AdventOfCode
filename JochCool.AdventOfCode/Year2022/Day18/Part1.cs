@@ -9,11 +9,11 @@ public static class Part1
 		foreach (string line in inputReader.ReadLines())
 		{
 			int i = 0;
-			int x = NumberUtil.ParseAt<int>(line, ref i, ',');
+			int x = ParseUtil.ParseAt<int>(line, ref i, ',');
 			i++;
-			int y = NumberUtil.ParseAt<int>(line, ref i, ',');
+			int y = ParseUtil.ParseAt<int>(line, ref i, ',');
 			i++;
-			int z = NumberUtil.ParseAt<int>(line, ref i, ',');
+			int z = ParseUtil.ParseAt<int>(line, ref i, ',');
 			Vector3D<int> cube = new(x, y, z);
 
 			foreach (Vector3D<int> otherCube in cubes)

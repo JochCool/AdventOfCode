@@ -11,7 +11,7 @@ public static class Part1
 			int separatorI = line.IndexOf(' ');
 
 			ReadOnlySpan<char> row = line.AsSpan(0, separatorI);
-			ReadOnlySpan<int> nums = line[(separatorI + 1)..].Split(',').Select(int.Parse).ToArray();
+			ReadOnlySpan<int> nums = ParseUtil.ParseArray<int>(line.AsSpan(separatorI + 1), ',');
 
 			int count = GetPossibleArrangementCount(row, nums);
 			Console.WriteLine($"{line} - {count}");
