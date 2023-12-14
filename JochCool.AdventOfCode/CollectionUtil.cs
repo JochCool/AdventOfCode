@@ -2,12 +2,37 @@ namespace JochCool.AdventOfCode;
 
 static class CollectionUtil
 {
+	public static bool JaggedArraysEqual<T>(T[][] a, T[][] b) where T : IEquatable<T>
+	{
+		if (a.Length != b.Length) return false;
+		for (int i = 0; i < a.Length; i++)
+		{
+			if (!MemoryExtensions.SequenceEqual<T>(a[i], b[i]))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public static T[][] CreateJaggedArray<T>(Vector<int> size)
 	{
 		T[][] result = new T[size.Y][];
 		for (int y = 0; y < size.Y; y++)
 		{
 			result[y] = new T[size.X];
+		}
+		return result;
+	}
+
+	public static T[][] CopyJaggedArray<T>(T[][] grid)
+	{
+		T[][] result = new T[grid.Length][];
+		for (int i = 0; i < grid.Length; i++)
+		{
+			T[] oldArray = grid[i];
+			T[] newArray = result[i] = new T[oldArray.Length];
+			Array.Copy(oldArray, newArray, oldArray.Length);
 		}
 		return result;
 	}
@@ -54,6 +79,14 @@ static class CollectionUtil
 				chars[i] = charSelector(line[i]);
 			}
 			Console.WriteLine(chars);
+		}
+	}
+
+	public static void PrintGrid(char[][] grid)
+	{
+		foreach (char[] line in grid)
+		{
+			Console.WriteLine(line);
 		}
 	}
 }

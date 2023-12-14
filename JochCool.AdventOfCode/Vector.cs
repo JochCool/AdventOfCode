@@ -42,6 +42,8 @@ public record struct Vector<T>(T X, T Y) : IVector<Vector<T>, T> where T : INumb
 		return new Vector<T>(T.Clamp(vector.X, min.X, max.X), T.Clamp(vector.Y, min.Y, max.Y));
 	}
 
+	public static Vector<T> Swizzle(Vector<T> vector) => new(vector.Y, vector.X);
+
 	public static Vector<T> operator +(Vector<T> value) => new Vector<T>(+value.X, +value.Y);
 
 	public static Vector<T> operator -(Vector<T> value) => new Vector<T>(-value.X, -value.Y);
