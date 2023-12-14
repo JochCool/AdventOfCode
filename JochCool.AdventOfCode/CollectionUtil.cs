@@ -2,6 +2,42 @@ namespace JochCool.AdventOfCode;
 
 static class CollectionUtil
 {
+	public static T[] Repeat<T>(ReadOnlySpan<T> span, int count)
+	{
+		if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+		if (count == 0) return [];
+
+		T[] result = new T[count * span.Length];
+		int resultI = 0;
+		for (int i = 0; i < count; i++)
+		{
+			span.CopyTo(result.AsSpan(resultI, span.Length));
+			resultI += span.Length;
+		}
+		return result;
+	}
+
+	public static T[] Repeat<T>(ReadOnlySpan<T> span, int count, T separator)
+	{
+		if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+		if (count == 0) return [];
+
+		T[] result = new T[count * (span.Length + 1) - 1];
+		int resultI = 0;
+		int i = 0;
+		while (true)
+		{
+			span.CopyTo(result.AsSpan(resultI, span.Length));
+			resultI += span.Length;
+
+			i++;
+			if (i == count) return result;
+
+			result[resultI] = separator;
+			resultI++;
+		}
+	}
+
 	public static bool JaggedArraysEqual<T>(T[][] a, T[][] b) where T : IEquatable<T>
 	{
 		if (a.Length != b.Length) return false;
