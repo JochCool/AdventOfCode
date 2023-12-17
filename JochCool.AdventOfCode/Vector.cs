@@ -15,7 +15,7 @@ public record struct Vector<T>(T X, T Y) : IVector<Vector<T>, T> where T : INumb
 	public static Vector<T> ToNegativeX => new Vector<T>(-T.One, T.Zero);
 	public static Vector<T> ToNegativeY => new Vector<T>(T.Zero, -T.One);
 
-	internal static readonly Vector<T>[] AxisUnitVectors =
+	public static Vector<T>[] AxisUnitVectors =>
 	[
 		ToPositiveX,
 		ToPositiveY,
@@ -63,9 +63,24 @@ public record struct Vector<T>(T X, T Y) : IVector<Vector<T>, T> where T : INumb
 		return new Vector<T>(left.X * right, left.Y * right);
 	}
 
+	public static Vector<T> operator *(T left, Vector<T> right)
+	{
+		return new Vector<T>(left * right.X, left * right.Y);
+	}
+
 	public static Vector<T> operator /(Vector<T> left, T right)
 	{
 		return new Vector<T>(left.X / right, left.Y / right);
+	}
+
+	public static T Dot(Vector<T> left, Vector<T> right)
+	{
+		return left.X * right.X + left.Y * right.Y;
+	}
+
+	public static T Determinant(Vector<T> a, Vector<T> b)
+	{
+		return a.X * b.Y - a.Y * b.X;
 	}
 
 	public override readonly string ToString()

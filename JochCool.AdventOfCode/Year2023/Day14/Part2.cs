@@ -9,14 +9,25 @@ public static class Part2
 		Vector<int> gridSize = new(grid[0].Length, grid.Length);
 		Vector<int> gridSizeSwizzled = Vector<int>.Swizzle(gridSize);
 
+		TransformationMatrix<int> northTransform = TransformationMatrix<int>.Identity;
+
+		TransformationMatrix<int> westTransform = TransformationMatrix<int>.GetSwizzle();
+
+		TransformationMatrix<int> southTransform = TransformationMatrix<int>.GetScalingY(-1);
+		southTransform.TranslateY(gridSize.Y - 1);
+
+		TransformationMatrix<int> eastTransform = TransformationMatrix<int>.GetSwizzle();
+		eastTransform.ScaleY(-1);
+		eastTransform.TranslateX(gridSize.X - 1);
+
 		List<char[][]> pastGrids = [];
 
 		while (true)
 		{
-			Tilt(grid, gridSize, v => v);
-			Tilt(grid, gridSizeSwizzled, Vector<int>.Swizzle);
-			Tilt(grid, gridSize, v => new(v.X, gridSize.Y - v.Y - 1));
-			Tilt(grid, gridSizeSwizzled, v => new(gridSize.Y - v.Y - 1, v.X));
+			Tilt(grid, gridSize, northTransform);
+			Tilt(grid, gridSizeSwizzled, westTransform);
+			Tilt(grid, gridSize, southTransform);
+			Tilt(grid, gridSizeSwizzled, eastTransform);
 
 			for (int i = 0; i < pastGrids.Count; i++)
 			{
@@ -45,22 +56,21 @@ public static class Part2
 		}
 	}
 
-	private static void Tilt(char[][] grid, Vector<int> gridSize, Func<Vector<int>, Vector<int>> coordTransformer)
+	private static void Tilt(char[][] grid, Vector<int> gridSize, TransformationMatrix<int> transformationMatrix)
 	{
 		for (int x = 0; x < gridSize.X; x++)
 		{
 			int targetY = 0;
 			for (int y = 0; y < gridSize.Y; y++)
 			{
-				// TODO: this is an affine transformation, so the delegate can actually be replaced with a matrix
-				Vector<int> transformedCoord = coordTransformer(new(x, y));
+				Vector<int> transformedCoord = transformationMatrix.Transform(new(x, y));
 				switch (grid[transformedCoord.Y][transformedCoord.X])
 				{
 					case 'O':
 					{
 						grid[transformedCoord.Y][transformedCoord.X] = '.';
 
-						Vector<int> transformedTargetCoord = coordTransformer(new(x, targetY));
+						Vector<int> transformedTargetCoord = transformationMatrix.Transform(new(x, targetY));
 						grid[transformedTargetCoord.Y][transformedTargetCoord.X] = 'O';
 
 						targetY++;

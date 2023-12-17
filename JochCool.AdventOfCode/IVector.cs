@@ -68,4 +68,6 @@ public interface IVector<TSelf, T> :
 	/// <param name="max">The upper corner of the box to which <paramref name="value"/> should clamp (inclusive).</param>
 	/// <returns>The result of clamping <paramref name="value"/> in the box.</returns>
 	static abstract TSelf Clamp(TSelf value, TSelf min, TSelf max);
+
+	static abstract T Dot(TSelf left, TSelf right);
 }
