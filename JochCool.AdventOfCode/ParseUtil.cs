@@ -28,4 +28,29 @@ static class ParseUtil
 			input = input[(endI + 1)..];
 		}
 	}
+
+	public static T ParseHexadecimal<T>(ReadOnlySpan<char> digits) where T : IBinaryInteger<T>
+	{
+		T result = T.Zero;
+		while (digits.Length != 0)
+		{
+			char c = digits[0];
+			int digit = c - '0';
+			if ((uint)digit >= 10)
+			{
+				digit = c - 'A';
+				if ((uint)digit >= 6)
+				{
+					digit = c - 'a';
+					if ((uint)digit >= 6) throw new FormatException($"'{c}' is not a hexadecimal digit.");
+				}
+				digit += 10;
+			}
+			result <<= 4;
+			result |= T.CreateChecked(digit);
+
+			digits = digits[1..];
+		}
+		return result;
+	}
 }
