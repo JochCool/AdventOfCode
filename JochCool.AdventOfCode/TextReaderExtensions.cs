@@ -50,6 +50,17 @@ static class TextReaderExtensions
 		return result;
 	}
 
+	// Also reads the empty line, but does not yield it
+	public static IEnumerable<string> ReadLinesUntilEmpty(this TextReader reader)
+	{
+		string? line;
+		while ((line = reader.ReadLine()) is not null)
+		{
+			if (line.Length == 0) yield break;
+			yield return line;
+		}
+	}
+
 	public static IEnumerable<string[]> ReadLineGroups(this TextReader reader)
 	{
 		List<string> group = [];
