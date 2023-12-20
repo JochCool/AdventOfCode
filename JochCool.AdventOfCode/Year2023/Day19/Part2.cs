@@ -139,7 +139,6 @@ public static class Part2
 
 		public NumberRange(int minInclusive, int maxInclusive)
 		{
-			if (maxInclusive < minInclusive && maxInclusive != int.MinValue) throw new ArgumentOutOfRangeException();
 			this.minInclusive = minInclusive;
 			this.maxInclusive = maxInclusive;
 		}
