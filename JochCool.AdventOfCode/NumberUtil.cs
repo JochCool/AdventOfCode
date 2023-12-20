@@ -68,4 +68,15 @@ static class NumberUtil
 	{
 		return a / Gcd(a, b) * b;
 	}
+
+	public static T Lcm<T>(params T[] values) where T : INumber<T>
+	{
+		if (values.Length == 0) return T.MultiplicativeIdentity;
+		T result = values[0];
+		for (int i = 1; i < values.Length; i++)
+		{
+			result = Lcm(result, values[i]);
+		}
+		return result;
+	}
 }
