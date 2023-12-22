@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace JochCool.AdventOfCode;
 
 /// <summary>
@@ -86,5 +88,56 @@ public record struct Vector<T>(T X, T Y) : IVector<Vector<T>, T> where T : INumb
 	public override readonly string ToString()
 	{
 		return $"({X}, {Y})";
+	}
+
+	public static Vector<T> Parse(string s, IFormatProvider? formatProvider = null)
+	{
+		ArgumentNullException.ThrowIfNull(s);
+		return Parse(s.AsSpan(), formatProvider);
+	}
+
+	public static Vector<T> Parse(ReadOnlySpan<char> s, IFormatProvider? formatProvider = null)
+	{
+		if (!TryParse(s, formatProvider, out Vector<T> result))
+		{
+			throw new FormatException();
+		}
+		return result;
+	}
+
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? formatProvider, out Vector<T> result)
+	{
+		return TryParse(s.AsSpan(), formatProvider, out result);
+	}
+
+	public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? formatProvider, out Vector<T> result)
+	{
+		const char separator = ','; // TODO: get this from the format provider?
+
+		int separatorIndex = s.IndexOf(separator);
+		if (separatorIndex == -1)
+		{
+			result = default;
+			return false;
+		}
+
+		ReadOnlySpan<char> xSpan = s[..separatorIndex];
+		ReadOnlySpan<char> ySpan = s[(separatorIndex + 1)..];
+
+		if (ySpan.Contains(separator))
+		{
+			result = default;
+			return false;
+		}
+
+		if (!T.TryParse(xSpan, formatProvider, out T? x) ||
+			!T.TryParse(ySpan, formatProvider, out T? y))
+		{
+			result = default;
+			return false;
+		}
+
+		result = new Vector<T>(x, y);
+		return true;
 	}
 }

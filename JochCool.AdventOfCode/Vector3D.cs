@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace JochCool.AdventOfCode;
 
 /// <summary>
@@ -86,5 +88,67 @@ public record struct Vector3D<T>(T X, T Y, T Z) : IVector<Vector3D<T>, T> where 
 	public override readonly string ToString()
 	{
 		return $"({X}, {Y}, {Z})";
+	}
+
+	public static Vector3D<T> Parse(string s, IFormatProvider? formatProvider = null)
+	{
+		ArgumentNullException.ThrowIfNull(s);
+		return Parse(s.AsSpan(), formatProvider);
+	}
+
+	public static Vector3D<T> Parse(ReadOnlySpan<char> s, IFormatProvider? formatProvider = null)
+	{
+		if (!TryParse(s, formatProvider, out Vector3D<T> result))
+		{
+			throw new FormatException();
+		}
+		return result;
+	}
+
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? formatProvider, out Vector3D<T> result)
+	{
+		return TryParse(s.AsSpan(), formatProvider, out result);
+	}
+
+	public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? formatProvider, out Vector3D<T> result)
+	{
+		const char separator = ','; // TODO: get this from the format provider?
+
+		int separator1Index = s.IndexOf(separator);
+		if (separator1Index == -1)
+		{
+			result = default;
+			return false;
+		}
+
+		ReadOnlySpan<char> xSpan = s[..separator1Index];
+
+		s = s[(separator1Index + 1)..];
+		int separator2Index = s.IndexOf(separator);
+		if (separator2Index == -1)
+		{
+			result = default;
+			return false;
+		}
+
+		ReadOnlySpan<char> ySpan = s[..separator2Index];
+		ReadOnlySpan<char> zSpan = s[(separator2Index + 1)..];
+
+		if (zSpan.Contains(separator))
+		{
+			result = default;
+			return false;
+		}
+
+		if (!T.TryParse(xSpan, formatProvider, out T? x) ||
+			!T.TryParse(ySpan, formatProvider, out T? y) ||
+			!T.TryParse(zSpan, formatProvider, out T? z))
+		{
+			result = default;
+			return false;
+		}
+
+		result = new Vector3D<T>(x, y, z);
+		return true;
 	}
 }

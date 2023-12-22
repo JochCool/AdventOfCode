@@ -17,13 +17,10 @@ public interface IVector<TSelf, T> :
 	IDivisionOperators<TSelf, T, TSelf>,
 
 	IEqualityOperators<TSelf, TSelf, bool>,
-	IEquatable<TSelf>
+	IEquatable<TSelf>,
 
-	// Maybe later
-	/*
-	ISpanFormattable,
 	ISpanParsable<TSelf>
-	*/
+	//ISpanFormattable // Maybe later
 
 	where TSelf : IVector<TSelf, T>
 	where T : INumber<T>
