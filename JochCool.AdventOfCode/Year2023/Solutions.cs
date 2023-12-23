@@ -28,7 +28,8 @@ public static class Solutions
 			20 => (Day20.Part1.Solve, Day20.Part2.Solve),
 			21 => (Day21.Part1.Solve, Day21.Part2.Solve),
 			22 => (Day22.Part1.Solve, Day22.Part2.Solve),
-			> 22 and <= 25 => throw new NotImplementedException("This puzzle is yet to be solved."),
+			23 => (Day23.Part1.Solve, Day23.Part2.Solve),
+			> 23 and <= 25 => throw new NotImplementedException("This puzzle is yet to be solved."),
 			_ => throw new ArgumentException($"{day} is not a puzzle day!", nameof(day))
 		};
 	}

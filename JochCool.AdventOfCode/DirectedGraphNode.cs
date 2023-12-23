@@ -41,7 +41,7 @@ public abstract class DirectedGraphNode<TSelf, TEdge>
 		List<TSelf> toCleanUp = [];
 		PriorityQueue<DirectedGraphNode<TSelf, TEdge>, int> dijkstraQueue = new();
 
-		DirectedGraphNode<TSelf, TEdge> currentNode = this;
+		DirectedGraphNode<TSelf, TEdge>? currentNode = this;
 		int currentNodeCost = 0;
 		currentNode.cost = currentNodeCost;
 		try
@@ -97,6 +97,34 @@ public abstract class DirectedGraphNode<TSelf, TEdge>
 		}
 	}
 
+	// Returns -1 if it is not in the graph.
+	// NOTE: this is not thread safe. Do not call this from multiple threads at once for the same graph.
+	public int FindLongestPathTo(TSelf target)
+	{
+		if (target == this) return 0;
+
+		// The cost field is now used to mark that we've been here already (0 means that we have)
+		cost = 0;
+
+		int highest = -1;
+		foreach (TEdge edge in Edges)
+		{
+			TSelf nextNode = edge.To;
+			if (nextNode.cost == 0) continue;
+
+			int cost = nextNode.FindLongestPathTo(target);
+			if (cost == -1) continue;
+
+			cost += edge.Cost;
+			if (cost > highest) highest = cost;
+		}
+
+		// Reset cost
+		cost = int.MaxValue;
+
+		return highest;
+	}
+
 	public abstract override int GetHashCode();
 }
 
@@ -110,4 +138,11 @@ public interface IEdge<TNode>
 public interface IDoubleEdge<TNode> : IEdge<TNode>
 {
 	TNode From { get; }
+}
+
+// Default implementation of IEdge
+public readonly struct DirectedGraphEdge<TNode>(TNode to, int cost) : IEdge<TNode>
+{
+	public TNode To => to;
+	public int Cost => cost;
 }
