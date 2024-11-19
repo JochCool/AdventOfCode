@@ -9,7 +9,7 @@ static class NumberUtil
 		return result;
 	}
 
-	internal static T Sum<T>(ReadOnlySpan<T> values) where T : IAdditionOperators<T, T, T>, IAdditiveIdentity<T, T>
+	internal static T Sum<T>(params ReadOnlySpan<T> values) where T : IAdditionOperators<T, T, T>, IAdditiveIdentity<T, T>
 	{
 		T result = T.AdditiveIdentity;
 		foreach (T value in values)
@@ -69,7 +69,7 @@ static class NumberUtil
 		return a / Gcd(a, b) * b;
 	}
 
-	public static T Lcm<T>(params T[] values) where T : INumber<T>
+	public static T Lcm<T>(params ReadOnlySpan<T> values) where T : INumber<T>
 	{
 		if (values.Length == 0) return T.MultiplicativeIdentity;
 		T result = values[0];

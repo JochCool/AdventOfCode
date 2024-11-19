@@ -49,7 +49,7 @@ class Monkey
 		items.Add(item);
 	}
 
-	public void AddItems(params IItem[] items)
+	public void AddItems(params ReadOnlySpan<IItem> items)
 	{
 		this.items.AddRange(items);
 	}
