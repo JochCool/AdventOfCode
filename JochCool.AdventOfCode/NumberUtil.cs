@@ -1,15 +1,15 @@
 namespace JochCool.AdventOfCode;
 
-static class NumberUtil
+public static class NumberUtil
 {
-	internal static T ProperModulo<T>(T left, T right) where T : INumberBase<T>, IModulusOperators<T, T, T>
+	public static T ProperModulo<T>(T left, T right) where T : INumberBase<T>, IModulusOperators<T, T, T>
 	{
 		T result = left % right;
 		if (T.IsNegative(result)) result += right;
 		return result;
 	}
 
-	internal static T Sum<T>(params ReadOnlySpan<T> values) where T : IAdditionOperators<T, T, T>, IAdditiveIdentity<T, T>
+	public static T Sum<T>(params ReadOnlySpan<T> values) where T : IAdditionOperators<T, T, T>, IAdditiveIdentity<T, T>
 	{
 		T result = T.AdditiveIdentity;
 		foreach (T value in values)
@@ -32,7 +32,7 @@ static class NumberUtil
 
 	public static BigInteger Sqrt(BigInteger value)
 	{
-		BigInteger estimate = value >> (int)BigInteger.Log2(value);
+		BigInteger estimate = value >> (int)BigInteger.Log2(value) / 2;
 		while (true)
 		{
 			BigInteger product = estimate * estimate;
