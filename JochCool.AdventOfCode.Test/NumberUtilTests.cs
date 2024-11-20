@@ -44,25 +44,41 @@ public static class NumberUtilTests
 		Assert.Equal(32, NumberUtil.Sum(-10, 42));
 	}
 
-	public static TheoryData<BigInteger, BigInteger> GetSqrtArguments()
+	public static TheoryData<BigInteger, bool, BigInteger> GetSqrtBigIntegerArguments()
 	{
-		TheoryData<BigInteger, BigInteger> arguments = [];
-		arguments.Add(0, 0);
-		arguments.Add(1, 1);
-		arguments.Add(1, 2);
-		arguments.Add(1, 3);
-		arguments.Add(2, 4);
-		arguments.Add(2, 5);
-		arguments.Add(7, 63);
-		arguments.Add(BigInteger.One << 32, BigInteger.One << 64);
+		TheoryData<BigInteger, bool, BigInteger> arguments = [];
+		arguments.Add(0, true, 0);
+		arguments.Add(1, true, 1);
+		arguments.Add(1, false, 2);
+		arguments.Add(1, false, 3);
+		arguments.Add(2, true, 4);
+		arguments.Add(2, false, 5);
+		arguments.Add(7, false, 63);
+		arguments.Add(BigInteger.One << 32, true, BigInteger.One << 64);
 		return arguments;
 	}
 
 	[Theory]
-	[MemberData(nameof(GetSqrtArguments))]
-	public static void TestSqrt(BigInteger expected, BigInteger value)
+	[MemberData(nameof(GetSqrtBigIntegerArguments))]
+	public static void TestSqrtBigInteger(BigInteger expectedValue, bool expectedToBeExact, BigInteger value)
 	{
-		Assert.Equal(expected, NumberUtil.Sqrt(value));
+		Assert.Equal(expectedValue, NumberUtil.Sqrt(value, out bool isExact));
+		Assert.Equal(expectedToBeExact, isExact);
+	}
+
+	[Theory]
+	[InlineData(0, true, 0)]
+	[InlineData(1, true, 1)]
+	[InlineData(1, false, 2)]
+	[InlineData(1, false, 3)]
+	[InlineData(2, true, 4)]
+	[InlineData(2, false, 5)]
+	[InlineData(7, false, 63)]
+	[InlineData(46340, false, int.MaxValue)]
+	public static void TestSqrtInt32(int expectedValue, bool expectedToBeExact, int value)
+	{
+		Assert.Equal(expectedValue, NumberUtil.Sqrt(value, out bool isExact));
+		Assert.Equal(expectedToBeExact, isExact);
 	}
 
 	[Theory]

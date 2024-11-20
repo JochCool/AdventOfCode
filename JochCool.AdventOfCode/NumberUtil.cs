@@ -30,22 +30,32 @@ public static class NumberUtil
 		return result;
 	}
 
-	public static BigInteger Sqrt(BigInteger value)
+	public static T Sqrt<T>(T value) where T : IBinaryInteger<T>
 	{
-		BigInteger estimate = value >> (int)BigInteger.Log2(value) / 2;
+		return Sqrt(value, out _);
+	}
+
+	public static T Sqrt<T>(T value, out bool isExact) where T : IBinaryInteger<T>
+	{
+		// The square root halves the order of magnitude of a number, so create an estimate by halving the length of the number
+		T estimate = value >> int.CreateSaturating(T.Log2(value)) / 2;
+
+		// Use Heron's method to iteratively improve the estimate
 		while (true)
 		{
-			BigInteger product = estimate * estimate;
-			BigInteger difference = value - product;
-			if (difference == 0)
+			T product = estimate * estimate;
+			T difference = value - product;
+			if (T.IsZero(difference))
 			{
+				isExact = true;
 				return estimate;
 			}
 
-			BigInteger estimateChange = (difference / estimate) >> 1;
-			if (estimateChange == 0)
+			T estimateChange = (difference / estimate) >> 1;
+			if (T.IsZero(estimateChange))
 			{
-				if (difference < 0) estimate--;
+				isExact = false;
+				if (T.IsNegative(difference)) estimate--;
 				return estimate;
 			}
 
