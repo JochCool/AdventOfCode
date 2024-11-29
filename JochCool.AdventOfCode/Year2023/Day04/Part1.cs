@@ -30,6 +30,6 @@ public static class Part1
 			sum += worth;
 		}
 
-		return sum.ToString();
+		return sum.ToInvariantString();
 	}
 }

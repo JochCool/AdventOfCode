@@ -6,6 +6,6 @@ public static class Part1
 	{
 		string[] grid = inputReader.ReadAllLines();
 		Vector<int> startPos = grid.PositionOf('S');
-		return BothParts.CountSteps(grid, startPos, 64).ToString();
+		return BothParts.CountSteps(grid, startPos, 64).ToInvariantString();
 	}
 }

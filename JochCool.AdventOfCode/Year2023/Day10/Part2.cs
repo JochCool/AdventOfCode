@@ -66,7 +66,7 @@ public static class Part2
 					_ => '.'
 				});
 
-				return numFilled.ToString();
+				return numFilled.ToInvariantString();
 			}
 
 			// reset

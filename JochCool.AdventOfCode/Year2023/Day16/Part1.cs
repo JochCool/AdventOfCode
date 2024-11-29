@@ -10,6 +10,6 @@ public static class Part1
 		beam.Position = new(-1, 0);
 		beam.Direction = Vector<int>.ToPositiveX;
 
-		return BothParts.SendBeam(grid, beam).ToString();
+		return BothParts.SendBeam(grid, beam).ToInvariantString();
 	}
 }

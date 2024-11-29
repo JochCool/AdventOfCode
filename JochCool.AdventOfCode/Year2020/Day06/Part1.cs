@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day06;
+namespace JochCool.AdventOfCode.Year2020.Day06;
 
 public static class Part1
 {
@@ -21,7 +21,7 @@ public static class Part1
 
 		Console.WriteLine($"Result: {result}");
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 
 	static int CountUniqueCharactersIn(List<char> list) // should not be empty

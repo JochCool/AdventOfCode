@@ -16,7 +16,7 @@ public static class Part1
 			int name = BothParts.IdFromName(line.AsSpan(i, 2));
 
 			i = "Valve AA has flow rate=".Length;
-			int flowRate = ParseUtil.ParseAt<int>(line, ref i, ';');
+			int flowRate = StringUtil.ParseAt<int>(line, ref i, ';');
 
 			i += "; tunnel lead to valve".Length;
 			i = line.IndexOf(' ', i) + 1;
@@ -110,7 +110,7 @@ public static class Part1
 		// Btw, the solution opens these valves in this order:
 		// DY HF RC XJ DP RU KG EF
 
-		return result.ToString();
+		return result.ToInvariantString();
 		/*
 		Valve currentValve = valves[0] ?? throw new Exception();
 		int totalGain = 0;

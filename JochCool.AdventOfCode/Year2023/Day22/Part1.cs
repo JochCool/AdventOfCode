@@ -18,6 +18,6 @@ public static class Part1
 			}
 		}
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 }

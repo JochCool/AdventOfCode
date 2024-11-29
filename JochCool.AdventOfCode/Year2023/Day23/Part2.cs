@@ -6,6 +6,6 @@ public static class Part2
 	{
 		Node[] nodes = BothParts.MazeToGraph(inputReader.ReadAllLines(), false);
 		
-		return nodes[0].FindLongestPathTo(nodes[^1]).ToString();
+		return nodes[0].FindLongestPathTo(nodes[^1]).ToInvariantString();
 	}
 }

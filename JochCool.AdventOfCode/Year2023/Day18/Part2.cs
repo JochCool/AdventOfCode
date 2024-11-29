@@ -44,7 +44,7 @@ public static class Part2
 				'3' => Vector<long>.ToNegativeY,
 				_ => throw new FormatException()
 			};
-			long amount = ParseUtil.ParseHexadecimal<long>(line.AsSpan(clrI, 5));
+			long amount = StringUtil.ParseHexadecimal<long>(line.AsSpan(clrI, 5));
 			result += amount;
 
 			pos += direction * amount;
@@ -164,7 +164,7 @@ public static class Part2
 				if (vertexA.IsRectangle)
 				{
 					long rectangleSize = (aDist - 1) * (edgeLength - 1);
-					return (result + rectangleSize).ToString();
+					return (result + rectangleSize).ToInvariantString();
 				}
 				if (vertexA.IsLeftTurn == isLeft) continue;
 				if (vertexD.IsLeftTurn == isLeft) continue;

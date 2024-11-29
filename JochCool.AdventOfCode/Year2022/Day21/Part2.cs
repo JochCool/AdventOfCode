@@ -42,6 +42,6 @@ public static class Part2
 		left.Coefficient = Fraction.One;
 		Console.WriteLine($"{left} = {right}");
 
-		return right.ToString();
+		return right.ToString(CultureInfo.InvariantCulture);
 	}
 }

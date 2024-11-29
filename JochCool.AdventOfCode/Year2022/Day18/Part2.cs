@@ -13,11 +13,11 @@ public static class Part2
 		foreach (string line in inputReader.ReadLines())
 		{
 			int i = 0;
-			int x = ParseUtil.ParseAt<int>(line, ref i, ',') + 1;
+			int x = StringUtil.ParseAt<int>(line, ref i, ',') + 1;
 			i++;
-			int y = ParseUtil.ParseAt<int>(line, ref i, ',') + 1;
+			int y = StringUtil.ParseAt<int>(line, ref i, ',') + 1;
 			i++;
-			int z = ParseUtil.ParseAt<int>(line, ref i, ',') + 1;
+			int z = StringUtil.ParseAt<int>(line, ref i, ',') + 1;
 
 			space[x, y, z] = Cube.Lava;
 		}
@@ -103,7 +103,7 @@ public static class Part2
 		Console.WriteLine($"Total of {emptySpaceCount} empty spaces.");
 		*/
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 
 	/*

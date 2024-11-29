@@ -22,7 +22,7 @@ public static class Part2
 
 		int decorderKey = divider1Pos * divider2Pos;
 		Console.WriteLine("Total: " + decorderKey);
-		return decorderKey.ToString();
+		return decorderKey.ToInvariantString();
 	}
 
 	class Compairer : IComparer<string>

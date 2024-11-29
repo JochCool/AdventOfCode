@@ -43,6 +43,6 @@ public static class Part2
 			}
 		}
 
-		return totalCopies.ToString();
+		return totalCopies.ToInvariantString();
 	}
 }

@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day04;
+namespace JochCool.AdventOfCode.Year2020.Day04;
 
 public static class Part2
 {
@@ -52,7 +52,7 @@ public static class Part2
 			}
 		}
 
-		return numValidPasswords.ToString();
+		return numValidPasswords.ToInvariantString();
 	}
 
 	static bool IsValidInput(string fieldName, string fieldValue)

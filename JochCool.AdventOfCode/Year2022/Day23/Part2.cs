@@ -103,7 +103,7 @@ public static class Part2
 			directions.Shift();
 			numRounds++;
 			Console.WriteLine($"Round {numRounds}: {numElvesMoved} elves moved");
-			if (numElvesMoved == 0) return numRounds.ToString();
+			if (numElvesMoved == 0) return numRounds.ToInvariantString();
 		}
 	}
 }

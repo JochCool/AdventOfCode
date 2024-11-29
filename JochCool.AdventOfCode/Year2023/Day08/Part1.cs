@@ -29,7 +29,7 @@ public static class Part1
 
 			if (currentNode == targetNode)
 			{
-				return numSteps.ToString();
+				return numSteps.ToInvariantString();
 			}
 
 			instructionI++;

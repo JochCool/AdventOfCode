@@ -50,6 +50,6 @@ public static class Part2
 		{
 			result = NumberUtil.Lcm(result, stepsCounts[i]);
 		}
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 }

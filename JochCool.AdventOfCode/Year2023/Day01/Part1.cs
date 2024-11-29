@@ -15,6 +15,6 @@ public static class Part1
 			sum += num;
 		}
 
-		return sum.ToString();
+		return sum.ToInvariantString();
 	}
 }

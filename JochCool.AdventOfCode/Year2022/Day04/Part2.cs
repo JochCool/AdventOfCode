@@ -22,6 +22,6 @@ public static class Part2
 			}
 		}
 
-		return count.ToString();
+		return count.ToInvariantString();
 	}
 }

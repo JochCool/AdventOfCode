@@ -66,7 +66,7 @@ public static class Part1
 				if (newPos == end)
 				{
 					Console.WriteLine("Found!");
-					return (minuteNum+1).ToString();
+					return (minuteNum+1).ToInvariantString();
 				}
 
 				if (!considered.Add((newPos, minuteNum)))

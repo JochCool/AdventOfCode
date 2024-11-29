@@ -116,6 +116,6 @@ public static class Part1
 		Console.WriteLine($"Final size: {width}x{height}");
 		int result = width * height - elves.Count;
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 }

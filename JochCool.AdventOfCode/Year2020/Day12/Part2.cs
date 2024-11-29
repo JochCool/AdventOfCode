@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day12;
+namespace JochCool.AdventOfCode.Year2020.Day12;
 
 public static class Part2
 {
@@ -75,6 +75,6 @@ public static class Part2
 		int manhattanDistance = Math.Abs(shipEast) + Math.Abs(shipNorth);
 		Console.WriteLine($"Manhattan distance is |{shipEast}| + |{shipNorth}| = {manhattanDistance}.");
 
-		return manhattanDistance.ToString();
+		return manhattanDistance.ToInvariantString();
 	}
 }

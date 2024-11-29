@@ -13,15 +13,15 @@ public static class Part1
 		foreach (string line in inputReader.ReadLines())
 		{
 			int i = "Sensor at x=".Length;
-			int x = ParseUtil.ParseAt<int>(line, ref i, ',');
+			int x = StringUtil.ParseAt<int>(line, ref i, ',');
 
 			i += ", y=".Length;
-			int y = ParseUtil.ParseAt<int>(line, ref i, ':');
+			int y = StringUtil.ParseAt<int>(line, ref i, ':');
 
 			Vector<int> sensorPos = new(x, y);
 
 			i += ": closest beacon is at x=".Length;
-			int beaconX = ParseUtil.ParseAt<int>(line, ref i, ',');
+			int beaconX = StringUtil.ParseAt<int>(line, ref i, ',');
 
 			i += ", y=".Length;
 			int beaconY = int.Parse(line.AsSpan(i));
@@ -62,6 +62,6 @@ public static class Part1
 		int size = xs.Size;
 		int numbeacons = beaconXs.Count;
 		Console.WriteLine($"{size} squares reached, {numbeacons} beacons are there.");
-		return (size - numbeacons).ToString();
+		return (size - numbeacons).ToInvariantString();
 	}
 }

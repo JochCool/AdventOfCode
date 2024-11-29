@@ -21,6 +21,6 @@ public static class Part1
 
 		BigInteger result = dict["root"].GetValue(dict);
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 }

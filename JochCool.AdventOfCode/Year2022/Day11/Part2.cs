@@ -69,7 +69,7 @@ public static class Part2
 
 		long business = Math.BigMul(highest, highest2);
 		Console.WriteLine($"Result: {highest} * {highest2} = {business}");
-		return business.ToString();
+		return business.ToInvariantString();
 	}
 
 	class Item : IItem

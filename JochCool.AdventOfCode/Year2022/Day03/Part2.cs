@@ -36,7 +36,7 @@ public static class Part2
 			}
 		}
 
-		return total.ToString();
+		return total.ToInvariantString();
 	}
 
 	static int GetPriority(char @char)

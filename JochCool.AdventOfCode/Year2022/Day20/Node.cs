@@ -162,7 +162,9 @@ class Node : BinaryTreeNode<Node>
 		}
 	}
 
-	public override string ToString() => Value.ToString();
+	public override string ToString() => ToString(null);
+
+	public string ToString(IFormatProvider? formatProvider) => Value.ToString(formatProvider);
 }
 
 /*

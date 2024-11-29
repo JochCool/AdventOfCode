@@ -28,7 +28,7 @@ public static class Part2
 
 				int product = num1 * num2 * num3;
 				Console.WriteLine($"Found! {num1} * {num2} * {num3} = {product}");
-				return product.ToString();
+				return product.ToInvariantString();
 			}
 		}
 		Console.WriteLine("None found.");

@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day03;
+namespace JochCool.AdventOfCode.Year2020.Day03;
 
 public static class Part1
 {
@@ -31,6 +31,6 @@ public static class Part1
 
 		Console.WriteLine($"Found {result} trees.");
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 }

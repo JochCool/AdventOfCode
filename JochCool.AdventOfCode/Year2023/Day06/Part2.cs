@@ -35,6 +35,6 @@ public static class Part2
 			result += rootIsExact ? -1 : 1;
 		}
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 }

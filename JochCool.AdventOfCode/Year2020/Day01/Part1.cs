@@ -22,7 +22,7 @@ public static class Part1
 
 			int product = number * other;
 			Console.WriteLine($"Found! {number} * {other} = {product}");
-			return product.ToString();
+			return product.ToInvariantString();
 		}
 		Console.WriteLine("None found.");
 		return null;

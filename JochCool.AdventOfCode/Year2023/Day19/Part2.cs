@@ -17,7 +17,7 @@ public static class Part2
 			workflows[line[0..ruleStartI]] = line[(ruleStartI + 1)..ruleEndI].Split(',');
 		}
 
-		return GetAcceptedCount(workflows, "in", PartsRange.AllInRange(new(1, 4000))).ToString();
+		return GetAcceptedCount(workflows, "in", PartsRange.AllInRange(new(1, 4000))).ToInvariantString();
 	}
 
 	private static long GetAcceptedCount(Dictionary<string, string[]> workflows, string workflowName, PartsRange inputParts)

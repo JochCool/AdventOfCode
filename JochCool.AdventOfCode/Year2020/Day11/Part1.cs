@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day11;
+namespace JochCool.AdventOfCode.Year2020.Day11;
 
 public static class Part1
 {
@@ -85,6 +85,6 @@ public static class Part1
 
 		} while (arraysAreDifferent);
 
-		return totalOccupied.ToString();
+		return totalOccupied.ToInvariantString();
 	}
 }

@@ -63,7 +63,7 @@ public static class Part1
 		Console.WriteLine();
 		Console.WriteLine(dug.ToString());
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 
 	// Copied over from day 10

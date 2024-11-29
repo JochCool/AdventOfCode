@@ -41,6 +41,6 @@ public static class Part2
 			seeds = map[seeds];
 		}
 
-		return seeds.Min.ToString();
+		return seeds.Min.ToInvariantString();
 	}
 }

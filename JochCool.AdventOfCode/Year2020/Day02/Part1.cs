@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day02;
+namespace JochCool.AdventOfCode.Year2020.Day02;
 
 public static class Part1
 {
@@ -41,6 +41,6 @@ public static class Part1
 
 		Console.WriteLine($"Number of valids: {result}.");
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 }

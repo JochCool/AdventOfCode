@@ -30,7 +30,7 @@ public static class Part2
 			total += worth;
 		}
 
-		return total.ToString();
+		return total.ToInvariantString();
 	}
 }
 

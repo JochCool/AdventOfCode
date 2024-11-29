@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day05;
+namespace JochCool.AdventOfCode.Year2020.Day05;
 
 public static class Part2
 {
@@ -25,7 +25,7 @@ public static class Part2
 			else
 			{
 				Console.WriteLine($"{num} is missing.");
-				return num.ToString();
+				return num.ToInvariantString();
 			}
 		}
 		Console.WriteLine("Not found.");

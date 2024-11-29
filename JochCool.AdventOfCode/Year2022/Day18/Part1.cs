@@ -9,11 +9,11 @@ public static class Part1
 		foreach (string line in inputReader.ReadLines())
 		{
 			int i = 0;
-			int x = ParseUtil.ParseAt<int>(line, ref i, ',');
+			int x = StringUtil.ParseAt<int>(line, ref i, ',');
 			i++;
-			int y = ParseUtil.ParseAt<int>(line, ref i, ',');
+			int y = StringUtil.ParseAt<int>(line, ref i, ',');
 			i++;
-			int z = ParseUtil.ParseAt<int>(line, ref i, ',');
+			int z = StringUtil.ParseAt<int>(line, ref i, ',');
 			Vector3D<int> cube = new(x, y, z);
 
 			foreach (Vector3D<int> otherCube in cubes)
@@ -28,6 +28,6 @@ public static class Part1
 			cubes.Add(cube);
 		}
 		int result = cubes.Count * 6 - numAdjacent * 2;
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 }

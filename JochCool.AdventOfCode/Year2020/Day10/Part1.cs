@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day10;
+namespace JochCool.AdventOfCode.Year2020.Day10;
 
 public static class Part1
 {
@@ -22,6 +22,6 @@ public static class Part1
 		int product = numDiff1 * numDiff3;
 		Console.WriteLine($"There's {numDiff1} one-jolt differences and {numDiff3} three-jolt differences (product: {product}).");
 
-		return product.ToString();
+		return product.ToInvariantString();
 	}
 }

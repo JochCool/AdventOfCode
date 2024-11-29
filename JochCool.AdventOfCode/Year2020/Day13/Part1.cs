@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day13;
+namespace JochCool.AdventOfCode.Year2020.Day13;
 
 public static class Part1
 {
@@ -36,7 +36,7 @@ public static class Part1
 		int product = busNum * busTime;
 		Console.WriteLine($"Result: {busNum} * {busTime} = {product}");
 
-		return product.ToString();
+		return product.ToInvariantString();
 	}
 }
 

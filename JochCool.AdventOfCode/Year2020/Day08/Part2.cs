@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day08;
+namespace JochCool.AdventOfCode.Year2020.Day08;
 
 public static class Part2
 {
@@ -35,7 +35,7 @@ public static class Part2
 			if (TryExecute(instructions, executionId++, out int accumulator))
 			{
 				Console.WriteLine($"Found solution after {executionId} tries! Error is at line {linenum}. Accumulator = {accumulator}.");
-				return accumulator.ToString();
+				return accumulator.ToInvariantString();
 			}
 
 			// wrong answer; reset

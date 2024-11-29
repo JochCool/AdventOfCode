@@ -53,6 +53,6 @@ public static class Part1
 			}
 		}
 
-		return sum.ToString();
+		return sum.ToInvariantString();
 	}
 }

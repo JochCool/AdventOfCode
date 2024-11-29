@@ -56,7 +56,7 @@ public static class Part2
 
 		Debug.Assert(stepsToGoDiagonal - gridSize.X < 0);
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 
 	private static int CountStepsFromEdges(string[] grid, int maxStepCount)

@@ -60,6 +60,6 @@ public static class Part2
 			}
 		}
 
-		return numVisited.ToString();
+		return numVisited.ToInvariantString();
 	}
 }

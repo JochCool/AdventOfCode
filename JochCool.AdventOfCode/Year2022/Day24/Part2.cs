@@ -59,7 +59,7 @@ public static class Part2
 
 		Console.WriteLine($"Reached first point after {result.Number + 2} minutes.");
 
-		return (result.Number + 2).ToString();
+		return (result.Number + 2).ToInvariantString();
 	}
 
 	static readonly Vector<int>[] dirs =

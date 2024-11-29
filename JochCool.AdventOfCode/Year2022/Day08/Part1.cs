@@ -40,7 +40,7 @@ public static class Part1
 			}
 		}
 
-		return count.ToString();
+		return count.ToInvariantString();
 
 		/*
 		IEnumerator<string> lines = inputReader.ReadLines().GetEnumerator();

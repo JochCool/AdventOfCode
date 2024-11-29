@@ -55,7 +55,7 @@ public static class Part2
 			}
 		}
 
-		return highest.ToString();
+		return highest.ToInvariantString();
 	}
 
 }

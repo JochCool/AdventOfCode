@@ -109,7 +109,7 @@ public static class Part1
 		}
 
 		PrintGrid(grid, gridWidth, gridHeight);
-		return numUnitsAtRest.ToString();
+		return numUnitsAtRest.ToInvariantString();
 	}
 
 	private static void PrintGrid(bool[,] grid, int width, int height)

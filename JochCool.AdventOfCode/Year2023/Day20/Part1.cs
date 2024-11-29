@@ -94,6 +94,6 @@ public static class Part1
 
 		long result = (long)lowPulsesCount * highPulsesCount;
 		Console.WriteLine($"{lowPulsesCount} * {highPulsesCount} = {result}");
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 }

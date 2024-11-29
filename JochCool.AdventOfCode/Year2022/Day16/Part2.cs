@@ -16,7 +16,7 @@ public static class Part2
 			int name = BothParts.IdFromName(line.AsSpan(i, 2));
 
 			i = "Valve AA has flow rate=".Length;
-			int flowRate = ParseUtil.ParseAt<int>(line, ref i, ';');
+			int flowRate = StringUtil.ParseAt<int>(line, ref i, ';');
 
 			i += "; tunnel lead to valve".Length;
 			i = line.IndexOf(' ', i) + 1;
@@ -81,7 +81,7 @@ public static class Part2
 		// When I tried it was 158593ms; just under two minutes.
 		Console.WriteLine($"Elapsed time: {stopwatch.ElapsedMilliseconds}ms");
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 
 	private static int Explore(Valve valve, List<Valve> otherValves, int[,] costMatrix, int startingCost, bool isElephant = false)

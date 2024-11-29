@@ -45,6 +45,6 @@ public static class Part1
 			}
 		}
 
-		return lowest.ToString();
+		return lowest.ToInvariantString();
 	}
 }

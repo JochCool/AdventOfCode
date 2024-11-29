@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day06;
+namespace JochCool.AdventOfCode.Year2020.Day06;
 
 public static class Part2
 {
@@ -46,6 +46,6 @@ public static class Part2
 
 		Console.WriteLine($"Result: {result}");
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 }

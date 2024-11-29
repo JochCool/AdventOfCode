@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day08;
+namespace JochCool.AdventOfCode.Year2020.Day08;
 
 public static class Part1
 {
@@ -47,6 +47,6 @@ public static class Part1
 
 		Console.WriteLine($"Accumulator = {accumulator}.");
 
-		return accumulator.ToString();
+		return accumulator.ToInvariantString();
 	}
 }

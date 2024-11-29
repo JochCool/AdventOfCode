@@ -8,6 +8,6 @@ public static class Part1
 
 		Directory.SizeReport sizeReport = root.GetSizeReport();
 		Console.WriteLine($"Total size: {sizeReport.TotalSize}\nTotal small dir size: {sizeReport.TotalSmallDirSize}");
-		return sizeReport.TotalSmallDirSize.ToString();
+		return sizeReport.TotalSmallDirSize.ToInvariantString();
 	}
 }

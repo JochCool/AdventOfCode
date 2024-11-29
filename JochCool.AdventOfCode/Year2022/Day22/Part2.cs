@@ -280,6 +280,6 @@ public static class Part2
 		Console.WriteLine($"Landed at {pos} facing {dirI}");
 		int result = 4 * (pos.X + 1) + 1000 * (pos.Y + 1) + dirI;
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 }

@@ -37,6 +37,6 @@ public static class Part2
 			total += num;
 			Console.WriteLine(num);
 		}
-		return total.ToString();
+		return total.ToInvariantString();
 	}
 }

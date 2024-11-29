@@ -61,6 +61,6 @@ public static class Part1
 			Console.WriteLine(new string(line));
 		}
 
-		return sum.ToString();
+		return sum.ToInvariantString();
 	}
 }

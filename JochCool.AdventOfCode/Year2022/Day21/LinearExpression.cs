@@ -71,9 +71,12 @@ class LinearExpression
 		Constant /= divisor;
 	}
 
-	public override string ToString()
+	public override string ToString() => ToString(null);
+
+	public string ToString(IFormatProvider? formatProvider)
 	{
-		if (!HasCoefficient) return Constant.ToString();
-		return $"{Coefficient}*x+{Constant}";
+		if (!HasCoefficient) return Constant.ToString(formatProvider);
+
+		return string.Create(formatProvider, $"{Coefficient}*x+{Constant}");
 	}
 }

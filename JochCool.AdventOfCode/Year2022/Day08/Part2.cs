@@ -54,6 +54,6 @@ public static class Part2
 			}
 		}
 
-		return highestScore.ToString();
+		return highestScore.ToInvariantString();
 	}
 }

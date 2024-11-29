@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day04;
+namespace JochCool.AdventOfCode.Year2020.Day04;
 
 public static class Part1
 {
@@ -46,7 +46,7 @@ public static class Part1
 			}
 		}
 
-		return numValidPasswords.ToString();
+		return numValidPasswords.ToInvariantString();
 
 		/*
 		int i = 0;

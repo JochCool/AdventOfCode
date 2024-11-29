@@ -227,7 +227,7 @@ public static class Part2
 			rockCount++;
 			if (rockCount >= totalRocks)
 			{
-				return (rockStartY - 3 + skippedHeight).ToString();
+				return (rockStartY - 3 + skippedHeight).ToInvariantString();
 			}
 
 			rockTypeI++;

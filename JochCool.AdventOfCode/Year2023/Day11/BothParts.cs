@@ -48,7 +48,7 @@ static class BothParts
 				sum += totalDist;
 			}
 		}
-		return (sum / 2).ToString();
+		return (sum / 2).ToInvariantString();
 	}
 
 	// gets the distance in either x or y direction, in expanded space

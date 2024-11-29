@@ -162,7 +162,7 @@ public static class Part1
 			rockCount++;
 			if (rockCount >= 2022)
 			{
-				return (rockStartY - 3).ToString();
+				return (rockStartY - 3).ToInvariantString();
 			}
 
 			rockTypeI++;

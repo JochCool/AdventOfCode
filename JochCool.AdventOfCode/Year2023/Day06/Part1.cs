@@ -30,6 +30,6 @@ public static class Part1
 			Console.WriteLine(domain);
 			result *= domain;
 		}
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 }

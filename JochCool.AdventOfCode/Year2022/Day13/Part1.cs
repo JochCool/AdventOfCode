@@ -38,7 +38,7 @@ public static class Part1
 			}
 		}
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 
 	static bool Compair(string line1, string line2)

@@ -68,7 +68,7 @@ public static class Part1
 
 		int business = highest * highest2;
 		Console.WriteLine($"Result: {highest} * {highest2} = {business}");
-		return business.ToString();
+		return business.ToInvariantString();
 	}
 
 	class Item : IItem
@@ -101,9 +101,11 @@ public static class Part1
 			worryLevel /= 3;
 		}
 
-		public override string ToString()
+		public override string ToString() => ToString(null);
+
+		public string ToString(IFormatProvider? formatProvider)
 		{
-			return worryLevel.ToString();
+			return worryLevel.ToString(formatProvider);
 		}
 	}
 }

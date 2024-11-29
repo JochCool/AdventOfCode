@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day09;
+namespace JochCool.AdventOfCode.Year2020.Day09;
 
 public static class Part2
 {
@@ -39,7 +39,7 @@ public static class Part2
 				}
 				int weakness = min + max;
 				Console.WriteLine($"The numbers in the range {firstNum} - {currentNum} work! The encryption weakness is {min} + {max} = {weakness}.");
-				return weakness.ToString();
+				return weakness.ToInvariantString();
 			}
 		}
 		Console.WriteLine("No valid range found.");

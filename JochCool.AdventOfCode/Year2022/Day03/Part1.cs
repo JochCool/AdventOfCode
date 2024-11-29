@@ -49,7 +49,7 @@ public static class Part1
 			Array.Clear(found);
 		}
 
-		return total.ToString();
+		return total.ToInvariantString();
 	}
 
 	static int GetPriority(char @char)

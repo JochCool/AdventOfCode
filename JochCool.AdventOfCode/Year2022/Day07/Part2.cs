@@ -15,6 +15,6 @@ public static class Part2
 		Console.WriteLine(minSize);
 
 		Directory result = root.GetSmallest(minSize);
-		return result.sizeCache.ToString();
+		return result.sizeCache.ToInvariantString();
 	}
 }

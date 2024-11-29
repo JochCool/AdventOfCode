@@ -15,7 +15,7 @@ public static class Part1
 			sum += Hash(input.AsSpan(i, endI - i));
 			i = endI;
 		}
-		return sum.ToString();
+		return sum.ToInvariantString();
 	}
 
 	public static byte Hash(ReadOnlySpan<char> input)

@@ -57,7 +57,7 @@ static class BothParts
 
 				if (newPos == endPos && newStepsDone >= minSteps)
 				{
-					return newHeatLost.ToString();
+					return newHeatLost.ToInvariantString();
 				}
 
 				priorityQueue.Enqueue(newNode, new AStarPriority(newHeatLost, (endPos - newPos).TaxicabMagnitude));

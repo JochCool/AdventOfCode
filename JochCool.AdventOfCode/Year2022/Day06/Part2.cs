@@ -29,7 +29,7 @@ public static class Part2
 			int foundI = prevChars.LastIndexOf(@char);
 			if (toSkip <= 0 && foundI == -1)
 			{
-				return stream.Position.ToString();
+				return stream.Position.ToInvariantString();
 			}
 			if (foundI >= toSkip)
 			{

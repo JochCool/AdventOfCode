@@ -102,7 +102,7 @@ public static class Part1
 
 			if (clonedEdges.Count == minimumCut)
 			{
-				return (size1 * size2).ToString();
+				return (size1 * size2).ToInvariantString();
 			}
 		}
 	}

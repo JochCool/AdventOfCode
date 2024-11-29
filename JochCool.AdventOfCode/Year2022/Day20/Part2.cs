@@ -53,6 +53,6 @@ public static class Part2
 		BigInteger num3 = root.Find(NumberUtil.ProperModulo(zeroI + 3000, nodes.Count)).Value;
 		BigInteger result = num1 + num2 + num3;
 		Console.WriteLine($"{num1} + {num2} + {num3} = {result}");
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 }

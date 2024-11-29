@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day07;
+namespace JochCool.AdventOfCode.Year2020.Day07;
 
 public static class Part1
 {
@@ -43,6 +43,6 @@ public static class Part1
 
 		Console.WriteLine($"Number of valid bags: {allFoundBagNames.Count}");
 
-		return allFoundBagNames.Count.ToString();
+		return allFoundBagNames.Count.ToInvariantString();
 	}
 }

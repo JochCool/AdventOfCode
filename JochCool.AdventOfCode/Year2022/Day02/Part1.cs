@@ -29,6 +29,6 @@ public static class Part1
 			}
 		}
 
-		return score.ToString();
+		return score.ToInvariantString();
 	}
 }

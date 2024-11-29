@@ -46,6 +46,6 @@ public static class Part2
 			Console.WriteLine(power);
 		}
 
-		return sum.ToString();
+		return sum.ToInvariantString();
 	}
 }

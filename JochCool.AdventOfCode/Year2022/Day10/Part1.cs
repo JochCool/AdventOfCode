@@ -32,6 +32,6 @@ public static class Part1
 				targetCycle += 40;
 			}
 		}
-		return total.ToString();
+		return total.ToInvariantString();
 	}
 }

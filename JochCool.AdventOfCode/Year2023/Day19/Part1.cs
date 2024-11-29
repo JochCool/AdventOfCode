@@ -21,13 +21,13 @@ public static class Part1
 		foreach (string line in inputReader.ReadLines())
 		{
 			int i = "{x=".Length;
-			int x = ParseUtil.ParseAt<int>(line, ref i, ',');
+			int x = StringUtil.ParseAt<int>(line, ref i, ',');
 			i += ",m=".Length;
-			int m = ParseUtil.ParseAt<int>(line, ref i, ',');
+			int m = StringUtil.ParseAt<int>(line, ref i, ',');
 			i += ",a=".Length;
-			int a = ParseUtil.ParseAt<int>(line, ref i, ',');
+			int a = StringUtil.ParseAt<int>(line, ref i, ',');
 			i += ",s=".Length;
-			int s = ParseUtil.ParseAt<int>(line, ref i, '}');
+			int s = StringUtil.ParseAt<int>(line, ref i, '}');
 
 			string[] workflow = workflows["in"];
 			int ruleI = 0;
@@ -82,6 +82,6 @@ public static class Part1
 			}
 		}
 
-		return acceptedRatingSum.ToString();
+		return acceptedRatingSum.ToInvariantString();
 	}
 }

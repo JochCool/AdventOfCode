@@ -93,7 +93,7 @@ public static class Part1
 					Console.WriteLine($"Found after {stepsDone} steps!");
 					Console.WriteLine(nextSteps - 1);
 					PrintGrid(numSteps, gridSize);
-					return (nextSteps - 1).ToString();
+					return (nextSteps - 1).ToInvariantString();
 				}
 
 				numSteps[newVector.Y, newVector.X] = nextSteps;
@@ -121,12 +121,12 @@ public static class Part1
 		StringBuilder sb = new();
 		for (int row = 0; row < gridSize.Y; row++)
 		{
-			sb.Append(string.Format("{0,2}", row));
+			sb.AppendFormat(CultureInfo.InvariantCulture, "{0,2}", row);
 			sb.Append('.');
 			for (int clm = 0; clm < gridSize.X; clm++)
 			{
 				sb.Append(' ');
-				sb.Append(string.Format("{0,3}", numSteps[row, clm]));
+				sb.AppendFormat(CultureInfo.InvariantCulture, "{0,3}", numSteps[row, clm]);
 			}
 			sb.Append('\n');
 		}

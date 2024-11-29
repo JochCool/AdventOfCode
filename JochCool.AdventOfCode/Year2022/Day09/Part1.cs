@@ -58,6 +58,6 @@ public static class Part1
 			}
 		}
 
-		return numVisited.ToString();
+		return numVisited.ToInvariantString();
 	}
 }

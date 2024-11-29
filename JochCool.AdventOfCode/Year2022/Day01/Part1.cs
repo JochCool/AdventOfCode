@@ -19,6 +19,6 @@ public static class Part1
 		}
 		if (current > highest) highest = current;
 
-		return highest.ToString();
+		return highest.ToInvariantString();
 	}
 }

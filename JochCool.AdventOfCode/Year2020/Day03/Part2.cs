@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day03;
+namespace JochCool.AdventOfCode.Year2020.Day03;
 
 public static class Part2
 {
@@ -15,7 +15,7 @@ public static class Part2
 
 		Console.WriteLine($"Result: {result}");
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 
 	static BigInteger TraverseSlope(string[] field, int stepsDown, int stepsRight)

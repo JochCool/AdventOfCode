@@ -39,6 +39,6 @@ public static class Part1
 			sum += prediction;
 		}
 
-		return sum.ToString();
+		return sum.ToInvariantString();
 	}
 }

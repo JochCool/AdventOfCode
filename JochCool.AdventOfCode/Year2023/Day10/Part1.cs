@@ -19,7 +19,7 @@ public static class Part1
 			});
 			if (success)
 			{
-				return (numSteps / 2).ToString();
+				return (numSteps / 2).ToInvariantString();
 			}
 		}
 		return null;

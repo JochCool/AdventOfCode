@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day05;
+namespace JochCool.AdventOfCode.Year2020.Day05;
 
 public static class Part1
 {
@@ -28,6 +28,6 @@ public static class Part1
 		Console.WriteLine($"In binary: ${Convert.ToString(maxSeatId, 2)}");
 		Console.WriteLine($"Index in file: ${maxIndex}");
 
-		return maxSeatId.ToString();
+		return maxSeatId.ToInvariantString();
 	}
 }

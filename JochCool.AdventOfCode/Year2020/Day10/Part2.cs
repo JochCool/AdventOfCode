@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day10;
+namespace JochCool.AdventOfCode.Year2020.Day10;
 
 public static class Part2
 {
@@ -24,7 +24,7 @@ public static class Part2
 
 		BigInteger result = results[^1];
 		Console.WriteLine($"Result: {results[^1]}.");
-		return result.ToString();
+		return result.ToInvariantString();
 
 		/* Old code that did not work but I still think it was a good try.
 		

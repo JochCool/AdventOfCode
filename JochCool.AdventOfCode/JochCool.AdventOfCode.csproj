@@ -15,6 +15,7 @@
 		<PackageReference Include="System.Drawing.Common" Version="9.0.0" />
 
 		<Using Include="System.Collections" />
+		<Using Include="System.Globalization" />
 		<Using Include="System.Numerics" />
 		<Using Include="System.Text" />
 		<Using Include="System.Text.RegularExpressions" />

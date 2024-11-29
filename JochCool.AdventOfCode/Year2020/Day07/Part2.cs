@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day07;
+namespace JochCool.AdventOfCode.Year2020.Day07;
 
 public static class Part2
 {
@@ -14,7 +14,7 @@ public static class Part2
 
 		Console.WriteLine($"Number of bags in shiny gold (excluding itself): {result}");
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 
 	// Counts the number of bags with the specified name, recursively. Includes this bag!

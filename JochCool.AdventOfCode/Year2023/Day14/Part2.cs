@@ -44,7 +44,7 @@ public static class Part2
 					Console.WriteLine($"Final index: {finalIndex}");
 
 					CollectionUtil.PrintGrid(pastGrids[finalIndex]);
-					return GetLoad(pastGrids[finalIndex]).ToString();
+					return GetLoad(pastGrids[finalIndex]).ToInvariantString();
 				}
 			}
 

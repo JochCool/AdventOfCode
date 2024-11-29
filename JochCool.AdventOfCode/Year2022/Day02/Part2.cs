@@ -23,6 +23,6 @@ public static class Part2
 			score += result * 3;
 		}
 
-		return score.ToString();
+		return score.ToInvariantString();
 	}
 }

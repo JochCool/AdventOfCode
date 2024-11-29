@@ -71,7 +71,7 @@ public static class Part2
 			}
 		}
 
-		return sum.ToString();
+		return sum.ToInvariantString();
 	}
 
 	static char[][] CopyArray(char[][] array)

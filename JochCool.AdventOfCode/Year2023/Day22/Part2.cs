@@ -15,6 +15,6 @@ public static class Part2
 			result += brick.GetTotalBeingSupported();
 		}
 
-		return result.ToString();
+		return result.ToInvariantString();
 	}
 }

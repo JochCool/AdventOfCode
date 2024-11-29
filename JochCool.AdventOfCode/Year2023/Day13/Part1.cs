@@ -22,7 +22,7 @@ public static class Part1
 			sum += value;
 		}
 
-		return sum.ToString();
+		return sum.ToInvariantString();
 	}
 
 	private static int FindLineSymmetry(string[] grid, int size, Func<string[], int, int, bool> lineEqualityComparer)

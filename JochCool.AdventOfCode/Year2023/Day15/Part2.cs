@@ -85,7 +85,7 @@ public static class Part2
 			}
 		}
 
-		return sum.ToString();
+		return sum.ToInvariantString();
 	}
 
 	struct Lens

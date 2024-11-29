@@ -16,7 +16,7 @@ public static class Part2
 			sum += num;
 		}
 
-		return sum.ToString();
+		return sum.ToInvariantString();
 	}
 
 	static int GetFirstDigit(string line, bool reverse) // If reverse is true, then searches from high to low index, instead of from low to high

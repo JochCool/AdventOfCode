@@ -1,7 +1,12 @@
 namespace JochCool.AdventOfCode;
 
-static class ParseUtil
+static class StringUtil
 {
+	public static string ToInvariantString<T>(this T value) where T : IFormattable
+	{
+		return value.ToString(null, CultureInfo.InvariantCulture);
+	}
+
 	public static T ParseAt<T>(string input, ref int index, char terminator, IFormatProvider? provider = null) where T : ISpanParsable<T>
 	{
 		int endIndex = input.IndexOf(terminator, index);
