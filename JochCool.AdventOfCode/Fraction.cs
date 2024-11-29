@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 
 namespace JochCool.AdventOfCode;
 
@@ -163,22 +164,21 @@ readonly struct Fraction : INumber<Fraction>
 		throw new NotImplementedException();
 	}
 
-	public override string ToString()
-	{
-		if (IsZero(this)) return "0";
-		if (denominator.IsOne) return numerator.ToString();
-		return $"{numerator}/{denominator}";
-	}
+	public override string ToString() => ToString(null, null);
+
+	public string ToString(string? format) => ToString(format, null);
+
+	public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
 
 	public string ToString(string? format, IFormatProvider? formatProvider)
 	{
-		if (format is not null || formatProvider is not null) throw new NotImplementedException();
-		return ToString();
+		DefaultInterpolatedStringHandler handler = new(1, 2, formatProvider);
+		handler.AppendFormatted(this, format);
+		return handler.ToStringAndClear();
 	}
 
 	public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
 	{
-		if (format != default || provider is not null) throw new NotImplementedException();
 		if (IsZero(this))
 		{
 			if (destination.Length == 0)
@@ -191,7 +191,7 @@ readonly struct Fraction : INumber<Fraction>
 			return true;
 		}
 
-		if (!numerator.TryFormat(destination, out int writtenSoFar, default, default))
+		if (!numerator.TryFormat(destination, out int writtenSoFar, format, provider))
 		{
 			charsWritten = writtenSoFar;
 			return false;
@@ -211,7 +211,7 @@ readonly struct Fraction : INumber<Fraction>
 
 		destination[writtenSoFar++] = '/';
 
-		bool success = denominator.TryFormat(destination[writtenSoFar..], out int written, default, default);
+		bool success = denominator.TryFormat(destination[writtenSoFar..], out int written, format, provider);
 		
 		charsWritten = writtenSoFar + 1 + written;
 		return success;
