@@ -7,7 +7,7 @@ static class StringUtil
 		return value.ToString(null, CultureInfo.InvariantCulture);
 	}
 
-	public static T ParseAt<T>(string input, ref int index, char terminator, IFormatProvider? provider = null) where T : ISpanParsable<T>
+	public static T ParseInvariantAt<T>(string input, ref int index, char terminator) where T : ISpanParsable<T>
 	{
 		int endIndex = input.IndexOf(terminator, index);
 		if (endIndex == -1) endIndex = input.Length;
@@ -15,21 +15,31 @@ static class StringUtil
 		ReadOnlySpan<char> toParse = input.AsSpan(index, endIndex - index);
 
 		index = endIndex;
-		return T.Parse(toParse, provider);
+		return T.Parse(toParse, CultureInfo.InvariantCulture);
 	}
 
-	public static T[] ParseArray<T>(ReadOnlySpan<char> input, char separator, IFormatProvider? provider = null) where T : ISpanParsable<T>
+	public static IEnumerable<T> ParseAllInvariant<T>(this IEnumerable<string> inputs) where T : IParsable<T>
 	{
+		foreach (string input in inputs)
+		{
+			yield return T.Parse(input, CultureInfo.InvariantCulture);
+		}
+	}
+
+	public static T[] ParseInvariantArray<T>(ReadOnlySpan<char> input, char separator) where T : ISpanParsable<T>
+	{
+		CultureInfo culture = CultureInfo.InvariantCulture;
+
 		List<T> result = [];
 		while (true)
 		{
 			int endI = input.IndexOf(separator);
 			if (endI == -1)
 			{
-				result.Add(T.Parse(input, provider));
+				result.Add(T.Parse(input, culture));
 				return result.ToArray();
 			}
-			result.Add(T.Parse(input[..endI], provider));
+			result.Add(T.Parse(input[..endI], culture));
 			input = input[(endI + 1)..];
 		}
 	}

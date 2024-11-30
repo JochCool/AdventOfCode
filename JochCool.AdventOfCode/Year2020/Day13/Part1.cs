@@ -4,7 +4,7 @@ public static class Part1
 {
 	public static string? Solve(TextReader inputReader)
 	{
-		int earliestTime = int.Parse(inputReader.ReadLine());
+		int earliestTime = int.Parse(inputReader.ReadLine(), CultureInfo.InvariantCulture);
 		
 		// Info about the closest bus so far
 		int busNum = 0;
@@ -20,7 +20,7 @@ public static class Part1
 			string currentBusStr = busStrEnd == -1 ? buses[busStrStart ..] : buses[busStrStart .. busStrEnd];
 			if (currentBusStr == "x") goto Continue;
 
-			int currentBusNum = int.Parse(currentBusStr);
+			int currentBusNum = int.Parse(currentBusStr, CultureInfo.InvariantCulture);
 			int currentBusTime = currentBusNum - earliestTime % currentBusNum;
 			if (currentBusTime < busTime)
 			{

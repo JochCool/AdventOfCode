@@ -43,7 +43,7 @@ public static class Part2
 
 			if (numberEndI != pathI)
 			{
-				int toMove = int.Parse(path.AsSpan(pathI, numberEndI - pathI));
+				int toMove = int.Parse(path.AsSpan(pathI, numberEndI - pathI), CultureInfo.InvariantCulture);
 
 				Vector<int> dir = directions[dirI];
 				while (toMove --> 0)

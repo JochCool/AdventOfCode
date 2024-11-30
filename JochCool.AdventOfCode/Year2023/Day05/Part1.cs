@@ -13,7 +13,7 @@ public static class Part1
 			int endI = seedsLine.IndexOf(' ', i);
 			if (endI == -1) endI = seedsLine.Length;
 
-			seeds.Add(long.Parse(seedsLine.AsSpan(i, endI - i)));
+			seeds.Add(long.Parse(seedsLine.AsSpan(i, endI - i), CultureInfo.InvariantCulture));
 
 			i = endI;
 		}
@@ -25,7 +25,7 @@ public static class Part1
 		string? line;
 		while ((line = inputReader.ReadLine()) is not null)
 		{
-			if (!line.EndsWith(" map:")) throw new FormatException("Expected map.");
+			if (!line.EndsWith(" map:", StringComparison.Ordinal)) throw new FormatException("Expected map.");
 
 			maps.Add(Map.Parse(inputReader));
 		}

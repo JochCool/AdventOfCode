@@ -69,8 +69,8 @@ public static class Part2
 				return IntInRange(fieldValue, 2020, 2030);
 
 			case "hgt":
-				if (fieldValue.EndsWith("cm")) return IntInRange(fieldValue[..^2], 150, 193);
-				if (fieldValue.EndsWith("in")) return IntInRange(fieldValue[..^2], 59, 76);
+				if (fieldValue.EndsWith("cm", StringComparison.Ordinal)) return IntInRange(fieldValue[..^2], 150, 193);
+				if (fieldValue.EndsWith("in", StringComparison.Ordinal)) return IntInRange(fieldValue[..^2], 59, 76);
 				return false;
 
 			case "hcl":

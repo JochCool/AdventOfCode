@@ -19,13 +19,13 @@ public static class Part1
 		while (true)
 		{
 			// Start looking for all occurences of the bag name
-			int i = input.IndexOf(currentlySearching);
+			int i = input.IndexOf(currentlySearching, StringComparison.Ordinal);
 			while (i != -1)
 			{
 				int startOfLine = input.LastIndexOf('\n', i) + 1; // Find where the line began
 				if (i != startOfLine) // We don't care about the bag itself
 				{
-					string newBagName = input[startOfLine .. input.IndexOf(" bags ", startOfLine)];
+					string newBagName = input[startOfLine .. input.IndexOf(" bags ", startOfLine, StringComparison.Ordinal)];
 					if (allFoundBagNames.Add(newBagName)) // avoid duplicates
 					{
 						bagNamesToSeach.Push(newBagName);
@@ -33,7 +33,7 @@ public static class Part1
 				}
 
 				// find next, starting from next line to avoid potential duplicates
-				i = input.IndexOf(currentlySearching, input.IndexOf('\n', i));
+				i = input.IndexOf(currentlySearching, input.IndexOf('\n', i), StringComparison.Ordinal);
 			}
 
 			// Next name

@@ -4,8 +4,8 @@ public static class Part2
 {
 	public static string? Solve(TextReader inputReader)
 	{
-		BigInteger totalTime = BigInteger.Parse(inputReader.ReadLineOrThrow()["Time:".Length..].Replace(" ", ""));
-		BigInteger distance = BigInteger.Parse(inputReader.ReadLineOrThrow()["Distance:".Length..].Replace(" ", ""));
+		BigInteger totalTime = BigInteger.Parse(inputReader.ReadLineOrThrow()["Time:".Length..].Replace(" ", ""), CultureInfo.InvariantCulture);
+		BigInteger distance = BigInteger.Parse(inputReader.ReadLineOrThrow()["Distance:".Length..].Replace(" ", ""), CultureInfo.InvariantCulture);
 
 		BigInteger discriminant = totalTime * totalTime - 4 * distance;
 		BigInteger root = NumberUtil.Sqrt(discriminant);

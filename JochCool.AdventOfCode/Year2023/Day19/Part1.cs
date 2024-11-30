@@ -21,13 +21,13 @@ public static class Part1
 		foreach (string line in inputReader.ReadLines())
 		{
 			int i = "{x=".Length;
-			int x = StringUtil.ParseAt<int>(line, ref i, ',');
+			int x = StringUtil.ParseInvariantAt<int>(line, ref i, ',');
 			i += ",m=".Length;
-			int m = StringUtil.ParseAt<int>(line, ref i, ',');
+			int m = StringUtil.ParseInvariantAt<int>(line, ref i, ',');
 			i += ",a=".Length;
-			int a = StringUtil.ParseAt<int>(line, ref i, ',');
+			int a = StringUtil.ParseInvariantAt<int>(line, ref i, ',');
 			i += ",s=".Length;
-			int s = StringUtil.ParseAt<int>(line, ref i, '}');
+			int s = StringUtil.ParseInvariantAt<int>(line, ref i, '}');
 
 			string[] workflow = workflows["in"];
 			int ruleI = 0;
@@ -51,7 +51,7 @@ public static class Part1
 						's' => s,
 						_ => throw new FormatException()
 					};
-					int operand2 = int.Parse(rule.AsSpan(2, colonI - 2));
+					int operand2 = int.Parse(rule.AsSpan(2, colonI - 2), CultureInfo.InvariantCulture);
 					bool success = rule[1] switch
 					{
 						'>' => operand1 > operand2,

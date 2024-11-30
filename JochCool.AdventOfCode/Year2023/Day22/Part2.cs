@@ -4,7 +4,7 @@ public static class Part2
 {
 	public static string? Solve(TextReader inputReader)
 	{
-		List<Brick> bricks = inputReader.ParseAllLines<Brick>();
+		List<Brick> bricks = inputReader.ParseAllLinesInvariant<Brick>();
 		Console.WriteLine($"{bricks.Count} bricks");
 
 		BothParts.LetBricksFall(bricks);

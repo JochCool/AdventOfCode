@@ -4,8 +4,8 @@ public static class Part1
 {
 	public static string? Solve(TextReader inputReader)
 	{
-		int[] times = inputReader.ReadLineOrThrow()["Time:".Length..].Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
-		int[] distances = inputReader.ReadLineOrThrow()["Distance:".Length..].Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+		int[] times = inputReader.ReadLineOrThrow()["Time:".Length..].Split(' ', StringSplitOptions.RemoveEmptyEntries).ParseAllInvariant<int>().ToArray();
+		int[] distances = inputReader.ReadLineOrThrow()["Distance:".Length..].Split(' ', StringSplitOptions.RemoveEmptyEntries).ParseAllInvariant<int>().ToArray();
 
 		int result = 1;
 		for (int i = 0; i < times.Length; i++)

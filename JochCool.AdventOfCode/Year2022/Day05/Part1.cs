@@ -31,7 +31,7 @@ public static class Part1
 				bottomCrates[i] = crate;
 			}
 			it.MoveNext();
-		} while (!it.Current.StartsWith(" 1 "));
+		} while (!it.Current.StartsWith(" 1 ", StringComparison.Ordinal));
 
 		it.MoveNext();
 
@@ -40,9 +40,9 @@ public static class Part1
 			string line = it.Current;
 			if (string.IsNullOrEmpty(line)) continue;
 			int i = 5;
-			int count = int.Parse(line[i..(i = line.IndexOf(' ', i))]);
-			int from = int.Parse(line[(i += 6)..(i = line.IndexOf(' ', i))]) - 1;
-			int to = int.Parse(line[(i+4)..]) - 1;
+			int count = int.Parse(line[i..(i = line.IndexOf(' ', i))], CultureInfo.InvariantCulture);
+			int from = int.Parse(line[(i += 6)..(i = line.IndexOf(' ', i))], CultureInfo.InvariantCulture) - 1;
+			int to = int.Parse(line[(i+4)..], CultureInfo.InvariantCulture) - 1;
 
 			while (count --> 0)
 			{

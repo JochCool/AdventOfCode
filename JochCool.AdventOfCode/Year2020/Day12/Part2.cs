@@ -14,7 +14,7 @@ public static class Part2
 
 		foreach (string line in inputReader.ReadLines())
 		{
-			int amount = int.Parse(line[1..]);
+			int amount = int.Parse(line[1..], CultureInfo.InvariantCulture);
 			switch (line[0])
 			{
 				case 'N':

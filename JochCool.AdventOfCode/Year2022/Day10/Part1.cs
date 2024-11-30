@@ -15,7 +15,7 @@ public static class Part1
 			{
 				cycle++;
 			}
-			else if (!line.StartsWith("addx "))
+			else if (!line.StartsWith("addx ", StringComparison.Ordinal))
 			{
 				Console.WriteLine("Unknown instruction " + line);
 				return null;
@@ -23,7 +23,7 @@ public static class Part1
 			else
 			{
 				cycle += 2;
-				x += BigInteger.Parse(line.AsSpan(5));
+				x += BigInteger.Parse(line.AsSpan(5), CultureInfo.InvariantCulture);
 			}
 			if (cycle == targetCycle - 1 || cycle == targetCycle - 2)
 			{

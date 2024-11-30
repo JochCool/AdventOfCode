@@ -26,7 +26,7 @@ public static class Part2
 		int i = 0;
 		foreach (string digit in digits)
 		{
-			int index = reverse ? line.LastIndexOf(digit) : line.IndexOf(digit);
+			int index = reverse ? line.LastIndexOf(digit, StringComparison.Ordinal) : line.IndexOf(digit, StringComparison.Ordinal);
 			if (index != -1 && (index < bestI ^ reverse))
 			{
 				bestI = index;

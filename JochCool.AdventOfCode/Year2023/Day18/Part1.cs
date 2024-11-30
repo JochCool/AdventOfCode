@@ -24,7 +24,7 @@ public static class Part1
 				'U' => Vector<int>.ToNegativeY,
 				_ => throw new FormatException()
 			};
-			int amount = int.Parse(line.AsSpan(2, line.IndexOf(' ', 2) - 2));
+			int amount = int.Parse(line.AsSpan(2, line.IndexOf(' ', 2) - 2), CultureInfo.InvariantCulture);
 			for (int i = 0; i < amount; i++)
 			{
 				pos += direction;

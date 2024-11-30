@@ -5,7 +5,7 @@ public static class Part1
 	public static string? Solve(TextReader inputReader)
 	{
 		// Load & sort input
-		List<int> joltages = inputReader.ParseAllLines<int>();
+		List<int> joltages = inputReader.ParseAllLinesInvariant<int>();
 		joltages.Sort();
 
 		int numDiff1 = 0;

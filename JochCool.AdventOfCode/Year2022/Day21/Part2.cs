@@ -11,7 +11,7 @@ public static class Part2
 			string name = line[..4];
 			if (line[6] is >= '0' and <= '9')
 			{
-				dict.Add(name, new MonkeyValue(BigInteger.Parse(line.AsSpan(6))));
+				dict.Add(name, new MonkeyValue(BigInteger.Parse(line.AsSpan(6), CultureInfo.InvariantCulture)));
 			}
 			else
 			{

@@ -137,7 +137,7 @@ public static class Part2
 				return -1;
 			}
 
-			return int.Parse(line.AsSpan(startI, length));
+			return int.Parse(line.AsSpan(startI, length), CultureInfo.InvariantCulture);
 		}
 	}
 }

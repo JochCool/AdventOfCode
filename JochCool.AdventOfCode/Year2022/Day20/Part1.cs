@@ -9,7 +9,7 @@ public static class Part1
 
 		foreach (string line in inputReader.ReadLines())
 		{
-			int value = int.Parse(line);
+			int value = int.Parse(line, CultureInfo.InvariantCulture);
 			Node node = new(value);
 			if (value == 0) zero = node;
 			nodes.Add(node);

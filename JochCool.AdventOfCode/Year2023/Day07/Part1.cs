@@ -6,7 +6,7 @@ public static class Part1
 {
 	public static string? Solve(TextReader inputReader)
 	{
-		List<Line> lines = inputReader.ParseAllLines<Line>();
+		List<Line> lines = inputReader.ParseAllLinesInvariant<Line>();
 
 		foreach (Line line in lines)
 		{
@@ -51,7 +51,7 @@ readonly struct Line : IParsable<Line>, IComparable<Line>
 
 	public int Bid => bid;
 
-	public static Line Parse(string s)
+	public static Line Parse(string s, IFormatProvider? provider)
 	{
 		if (s[cardCount] != ' ') throw new FormatException();
 
@@ -73,10 +73,8 @@ readonly struct Line : IParsable<Line>, IComparable<Line>
 			cards |= cardType;
 		}
 
-		return new Line(cards, int.Parse(s.AsSpan(cardCount + 1)));
+		return new Line(cards, int.Parse(s.AsSpan(cardCount + 1), provider));
 	}
-
-	public static Line Parse(string s, IFormatProvider? provider) => Parse(s);
 
 	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out Line result)
 	{

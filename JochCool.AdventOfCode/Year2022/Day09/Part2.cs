@@ -30,7 +30,7 @@ public static class Part2
 		foreach (string line in inputReader.ReadLines())
 		{
 			Vector<int> direction = directions[line[0]];
-			int dist = int.Parse(line.AsSpan(2));
+			int dist = int.Parse(line.AsSpan(2), CultureInfo.InvariantCulture);
 			while (dist --> 0)
 			{
 				knots[0] += direction;

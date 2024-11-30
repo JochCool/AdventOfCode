@@ -17,7 +17,7 @@ public static class Part1
 			int startI = "Game ".Length;
 			int endI = line.IndexOf(':', startI);
 
-			int gameNum = int.Parse(line.AsSpan(startI, endI - startI));
+			int gameNum = int.Parse(line.AsSpan(startI, endI - startI), CultureInfo.InvariantCulture);
 
 			bool isGood = true;
 
@@ -25,7 +25,7 @@ public static class Part1
 			while (true)
 			{
 				endI = line.IndexOf(' ', startI);
-				int num = int.Parse(line.AsSpan(startI, endI - startI));
+				int num = int.Parse(line.AsSpan(startI, endI - startI), CultureInfo.InvariantCulture);
 
 				startI = endI + 1;
 				endI = line.IndexOfAny([',', ';'], startI);

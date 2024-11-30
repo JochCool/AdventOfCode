@@ -11,7 +11,7 @@ public static class Part2
 
 		foreach (string line in inputReader.ReadLines())
 		{
-			BigInteger value = BigInteger.Parse(line) * decryptionKey;
+			BigInteger value = BigInteger.Parse(line, CultureInfo.InvariantCulture) * decryptionKey;
 			Node node = new(value);
 			if (value == 0) zero = node;
 			nodes.Add(node);

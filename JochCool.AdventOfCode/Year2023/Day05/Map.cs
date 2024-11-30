@@ -65,15 +65,15 @@ class Map
 
 			int space1 = line.IndexOf(' ');
 			if (space1 == -1) throw new FormatException();
-			result.destinationRangeStart = long.Parse(line.AsSpan(0, space1));
+			result.destinationRangeStart = long.Parse(line.AsSpan(0, space1), CultureInfo.InvariantCulture);
 
 			++space1;
 			int space2 = line.IndexOf(' ', space1);
 			if (space2 == -1) throw new FormatException();
-			result.sourceRangeStart = long.Parse(line.AsSpan(space1, space2 - space1));
+			result.sourceRangeStart = long.Parse(line.AsSpan(space1, space2 - space1), CultureInfo.InvariantCulture);
 
 			++space2;
-			result.rangeLength = long.Parse(line.AsSpan(space2));
+			result.rangeLength = long.Parse(line.AsSpan(space2), CultureInfo.InvariantCulture);
 
 			return result;
 		}

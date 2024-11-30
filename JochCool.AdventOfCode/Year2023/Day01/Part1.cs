@@ -11,7 +11,7 @@ public static class Part1
 		{
 			int firstDI = line.IndexOfAny(digits);
 			int lastDI = line.LastIndexOfAny(digits);
-			int num = int.Parse($"{line[firstDI]}{line[lastDI]}");
+			int num = int.Parse($"{line[firstDI]}{line[lastDI]}", CultureInfo.InvariantCulture);
 			sum += num;
 		}
 

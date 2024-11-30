@@ -8,8 +8,8 @@ public static class Part1
 
 		foreach (string line in inputReader.ReadLines())
 		{
-			int startI = line.IndexOf(": ") + 2;
-			int endI = line.IndexOf(" | ", startI);
+			int startI = line.IndexOf(": ", StringComparison.Ordinal) + 2;
+			int endI = line.IndexOf(" | ", startI, StringComparison.Ordinal);
 
 			int[] winningNumbers = line[startI..endI].Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
 

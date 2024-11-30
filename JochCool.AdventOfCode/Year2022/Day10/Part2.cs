@@ -15,14 +15,14 @@ public static class Part2
 			DrawPixel();
 
 			if (line == "noop") continue;
-			if (!line.StartsWith("addx "))
+			if (!line.StartsWith("addx ", StringComparison.Ordinal))
 			{
 				Console.WriteLine("Unknown instruction " + line);
 				return null;
 			}
 			
 			DrawPixel();
-			x += BigInteger.Parse(line.AsSpan(5));
+			x += BigInteger.Parse(line.AsSpan(5), CultureInfo.InvariantCulture);
 		}
 
 		string result = screen.ToString();

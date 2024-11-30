@@ -15,7 +15,7 @@ public static class Part1
 				current = 0;
 				continue;
 			}
-			current += int.Parse(line);
+			current += int.Parse(line, CultureInfo.InvariantCulture);
 		}
 		if (current > highest) highest = current;
 

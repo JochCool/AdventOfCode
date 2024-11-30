@@ -51,7 +51,7 @@ public static class Part2
 
 							int count = endPos - startPos + 1;
 
-							int num = int.Parse(line.AsSpan(startPos, count));
+							int num = int.Parse(line.AsSpan(startPos, count), CultureInfo.InvariantCulture);
 							product *= num;
 
 							Array.Fill(line, '.', startPos, count);

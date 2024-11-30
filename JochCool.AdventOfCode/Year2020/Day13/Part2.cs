@@ -24,7 +24,7 @@ public static class Part2
 			string currentBusStr = busStrEnd == -1 ? buses[busStrStart..] : buses[busStrStart..busStrEnd];
 			if (currentBusStr == "x") goto Continue;
 
-			int currentBusNum = int.Parse(currentBusStr);
+			int currentBusNum = int.Parse(currentBusStr, CultureInfo.InvariantCulture);
 			int gdc = NumberUtil.Gcd(currentBusNum, frequency);
 
 			_ = offset - i;

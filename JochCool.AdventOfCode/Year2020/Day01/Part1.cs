@@ -7,7 +7,7 @@ public static class Part1
 	public static string? Solve(TextReader inputReader)
 	{
 		// read numbers
-		List<int> numbers = inputReader.ParseAllLines<int>();
+		List<int> numbers = inputReader.ParseAllLinesInvariant<int>();
 
 		// sort numbers so we can do binary search
 		numbers.Sort();

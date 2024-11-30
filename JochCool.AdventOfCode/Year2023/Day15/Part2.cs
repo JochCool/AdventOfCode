@@ -42,7 +42,7 @@ public static class Part2
 
 				case '=':
 				{
-					int focalLength = int.Parse(input.AsSpan(operationI + 1, endI - operationI - 1));
+					int focalLength = int.Parse(input.AsSpan(operationI + 1, endI - operationI - 1), CultureInfo.InvariantCulture);
 
 					bool found = false;
 					for (int lensI = 0; lensI < box.Count; lensI++)

@@ -13,8 +13,8 @@ public static class Part1
 		while (match.Success)
 		{
 			// get params
-			int min = int.Parse(match.Groups[1].Value);
-			int max = int.Parse(match.Groups[2].Value);
+			int min = int.Parse(match.Groups[1].Value, CultureInfo.InvariantCulture);
+			int max = int.Parse(match.Groups[2].Value, CultureInfo.InvariantCulture);
 			char expected = match.Groups[3].Value[0];
 			string toTest = match.Groups[4].Value;
 			Console.WriteLine($"Min: {min}, max: {max}, char: {expected}, to test: {toTest}");

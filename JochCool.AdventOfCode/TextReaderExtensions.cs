@@ -39,13 +39,15 @@ static class TextReaderExtensions
 		return result;
 	}
 
-	public static List<T> ParseAllLines<T>(this TextReader reader, IFormatProvider? formatProvider = null) where T : IParsable<T>
+	public static List<T> ParseAllLinesInvariant<T>(this TextReader reader) where T : IParsable<T>
 	{
+		CultureInfo culture = CultureInfo.InvariantCulture;
+
 		List<T> result = [];
 		string? line;
 		while ((line = reader.ReadLine()) is not null)
 		{
-			result.Add(T.Parse(line, formatProvider));
+			result.Add(T.Parse(line, culture));
 		}
 		return result;
 	}

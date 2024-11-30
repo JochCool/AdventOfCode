@@ -11,18 +11,18 @@ public static class Part2
 		foreach (string line in inputReader.ReadLines())
 		{
 			int i = "Sensor at x=".Length;
-			int x = StringUtil.ParseAt<int>(line, ref i, ',');
+			int x = StringUtil.ParseInvariantAt<int>(line, ref i, ',');
 
 			i += ", y=".Length;
-			int y = StringUtil.ParseAt<int>(line, ref i, ':');
+			int y = StringUtil.ParseInvariantAt<int>(line, ref i, ':');
 
 			Vector<int> sensorPos = new(x, y);
 
 			i += ": closest beacon is at x=".Length;
-			int beaconX = StringUtil.ParseAt<int>(line, ref i, ',');
+			int beaconX = StringUtil.ParseInvariantAt<int>(line, ref i, ',');
 
 			i += ", y=".Length;
-			int beaconY = int.Parse(line.AsSpan(i));
+			int beaconY = int.Parse(line.AsSpan(i), CultureInfo.InvariantCulture);
 
 			int radius = (sensorPos - new Vector<int>(beaconX, beaconY)).TaxicabMagnitude;
 			TaxicabCircle sensor = new(sensorPos, radius);
@@ -52,18 +52,18 @@ public static class Part2
 		foreach (string line in File.ReadLines(filePath))
 		{
 			int i = "Sensor at x=".Length;
-			int x = StringUtil.ParseAt<int>(line, ref i, ',');
+			int x = StringUtil.ParseInvariantAt<int>(line, ref i, ',');
 
 			i += ", y=".Length;
-			int y = StringUtil.ParseAt<int>(line, ref i, ':');
+			int y = StringUtil.ParseInvariantAt<int>(line, ref i, ':');
 
 			Vector<int> sensorPos = new(x, y);
 
 			i += ": closest beacon is at x=".Length;
-			int beaconX = StringUtil.ParseAt<int>(line, ref i, ',');
+			int beaconX = StringUtil.ParseInvariantAt<int>(line, ref i, ',');
 
 			i += ", y=".Length;
-			int beaconY = int.Parse(line.AsSpan(i));
+			int beaconY = int.Parse(line.AsSpan(i), CultureInfo.InvariantCulture);
 
 			int radius = (sensorPos - new Vector<int>(beaconX, beaconY)).TaxicabMagnitude;
 			TaxicabCircle sensor = new(sensorPos, radius);

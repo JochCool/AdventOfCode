@@ -45,7 +45,7 @@ public static class Part2
 				else if (operand1Id == 's') operand1 = ref inputParts.s;
 				else if (operand1Id != 'x') throw new FormatException();
 
-				int operand2 = int.Parse(rule.AsSpan(2, colonI - 2));
+				int operand2 = int.Parse(rule.AsSpan(2, colonI - 2), CultureInfo.InvariantCulture);
 
 				char operatorId = rule[1];
 				switch (operatorId)

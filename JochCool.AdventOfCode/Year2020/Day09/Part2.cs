@@ -16,7 +16,7 @@ public static class Part2
 		foreach (string line in inputReader.ReadLines())
 		{
 			// add num
-			int currentNum = int.Parse(line);
+			int currentNum = int.Parse(line, CultureInfo.InvariantCulture);
 			if (currentNum >= target) break;
 			currentNums.Enqueue(currentNum);
 			currentSum += currentNum;

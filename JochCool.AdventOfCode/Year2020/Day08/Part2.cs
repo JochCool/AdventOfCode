@@ -107,7 +107,7 @@ public static class Part2
 				"jmp" => OperationType.Jump,
 				_ => throw new FormatException($"Unknown operation type {arguments[0]}."),
 			};
-			return new Instruction(type, int.Parse(arguments[1]));
+			return new Instruction(type, int.Parse(arguments[1], CultureInfo.InvariantCulture));
 		}
 
 		public override string ToString() => $"{Operation} {Argument}";

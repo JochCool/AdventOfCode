@@ -139,11 +139,11 @@ class Directory
 				}
 			}
 
-			if (line.StartsWith("dir ")) continue;
+			if (line.StartsWith("dir ", StringComparison.Ordinal)) continue;
 
 			int endOfNumber = line.IndexOf(' ');
 			if (endOfNumber == -1) throw new Exception();
-			int size = int.Parse(line.AsSpan(0, endOfNumber));
+			int size = int.Parse(line.AsSpan(0, endOfNumber), CultureInfo.InvariantCulture);
 			currentDir.AddFile(size);
 		}
 

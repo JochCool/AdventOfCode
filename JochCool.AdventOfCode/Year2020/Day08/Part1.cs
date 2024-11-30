@@ -35,12 +35,12 @@ public static class Part1
 					break;
 
 				case "acc":
-					accumulator += int.Parse(arguments[1]);
+					accumulator += int.Parse(arguments[1], CultureInfo.InvariantCulture);
 					i++;
 					break;
 
 				case "jmp":
-					i += int.Parse(arguments[1]);
+					i += int.Parse(arguments[1], CultureInfo.InvariantCulture);
 					break;
 			}
 		}

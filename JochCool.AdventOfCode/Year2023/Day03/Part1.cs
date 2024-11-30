@@ -46,7 +46,7 @@ public static class Part1
 
 							int count = endPos - startPos + 1;
 
-							int num = int.Parse(line.AsSpan(startPos, count));
+							int num = int.Parse(line.AsSpan(startPos, count), CultureInfo.InvariantCulture);
 							sum += num;
 
 							Array.Fill(line, '.', startPos, count);

@@ -21,7 +21,7 @@ public static class Part2
 	static int TotalNumBags(string input, string bagName)
 	{
 		// Find the contents of the bag.
-		int i = input.IndexOf($"\n{bagName}") + bagName.Length + 15; // The newline + " bags contain " = 15 characters
+		int i = input.IndexOf($"\n{bagName}", StringComparison.Ordinal) + bagName.Length + 15; // The newline + " bags contain " = 15 characters
 
 		if (input[i] == 'n') return 1; // 'n' of "no other bags"
 
@@ -31,10 +31,10 @@ public static class Part2
 		{
 			// Read the number until the next space
 			int nextSpace = input.IndexOf(' ', i);
-			int num = int.Parse(input[i..nextSpace]);
+			int num = int.Parse(input[i..nextSpace], CultureInfo.InvariantCulture);
 
 			// Read next bag and multiply
-			i = input.IndexOf(" bag", ++nextSpace);
+			i = input.IndexOf(" bag", ++nextSpace, StringComparison.Ordinal);
 			result += TotalNumBags(input, input[nextSpace..i]) * num;
 
 			// next

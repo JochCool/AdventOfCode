@@ -15,8 +15,8 @@ public static class Part2
 		{
 			string line = lines[i];
 
-			int startI = line.IndexOf(": ") + 2;
-			int endI = line.IndexOf(" | ", startI);
+			int startI = line.IndexOf(": ", StringComparison.Ordinal) + 2;
+			int endI = line.IndexOf(" | ", startI, StringComparison.Ordinal);
 
 			int[] winningNumbers = line[startI..endI].Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
 

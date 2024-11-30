@@ -29,12 +29,12 @@ public static class Part1
 			while (true)
 			{
 				int numEnd = line.IndexOf(',', numStart);
-				int x = int.Parse(line.AsSpan(numStart, numEnd - numStart));
+				int x = int.Parse(line.AsSpan(numStart, numEnd - numStart), CultureInfo.InvariantCulture);
 
 				numStart = numEnd + 1;
 				numEnd = line.IndexOf(' ', numStart);
 				if (numEnd == -1) numEnd = line.Length;
-				int y = int.Parse(line.AsSpan(numStart, numEnd - numStart));
+				int y = int.Parse(line.AsSpan(numStart, numEnd - numStart), CultureInfo.InvariantCulture);
 
 				if (posX == 0)
 				{

@@ -5,7 +5,7 @@ public static class Part2
 	public static string? Solve(TextReader inputReader)
 	{
 		// Load & sort input
-		List<int> joltages = inputReader.ParseAllLines<int>();
+		List<int> joltages = inputReader.ParseAllLinesInvariant<int>();
 		joltages.Sort();
 
 		// Every value corresponds to the number of valid adapter arrangements that can get you a joltage of <index>.

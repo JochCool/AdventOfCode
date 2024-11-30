@@ -8,7 +8,7 @@ public static class Part2
 
 		foreach (string line in inputReader.ReadLines())
 		{
-			int[] history = line.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+			int[] history = line.Split(' ', StringSplitOptions.RemoveEmptyEntries).ParseAllInvariant<int>().ToArray();
 			int[][] sequences = new int[history.Length][];
 			sequences[0] = history;
 

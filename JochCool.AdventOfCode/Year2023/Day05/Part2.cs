@@ -11,13 +11,13 @@ public static class Part2
 			int endI = seedsLine.IndexOf(' ', i);
 			if (endI == -1) throw new FormatException("Missing length.");
 
-			long startSeed = long.Parse(seedsLine.AsSpan(i, endI - i));
+			long startSeed = long.Parse(seedsLine.AsSpan(i, endI - i), CultureInfo.InvariantCulture);
 
 			i = endI + 1;
 			endI = seedsLine.IndexOf(' ', i);
 			if (endI == -1) endI = seedsLine.Length;
 
-			long seedsLength = long.Parse(seedsLine.AsSpan(i, endI - i));
+			long seedsLength = long.Parse(seedsLine.AsSpan(i, endI - i), CultureInfo.InvariantCulture);
 
 			seeds.AddRange(startSeed, startSeed + seedsLength - 1);
 
@@ -31,7 +31,7 @@ public static class Part2
 		string? line;
 		while ((line = inputReader.ReadLine()) is not null)
 		{
-			if (!line.EndsWith(" map:")) throw new FormatException("Expected map.");
+			if (!line.EndsWith(" map:", StringComparison.Ordinal)) throw new FormatException("Expected map.");
 
 			maps.Add(Map.Parse(inputReader));
 		}

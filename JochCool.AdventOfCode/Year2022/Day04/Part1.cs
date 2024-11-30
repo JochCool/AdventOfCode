@@ -9,11 +9,11 @@ public static class Part1
 		foreach (string line in inputReader.ReadLines())
 		{
 			int pos = line.IndexOf('-');
-			int pair1Start = int.Parse(line[..pos]);
+			int pair1Start = int.Parse(line[..pos], CultureInfo.InvariantCulture);
 
-			int pair1End = int.Parse(line[++pos..(pos = line.IndexOf(',', pos))]);
-			int pair2Start = int.Parse(line[++pos..(pos = line.IndexOf('-', pos))]);
-			int pair2End = int.Parse(line[++pos..]);
+			int pair1End = int.Parse(line[++pos..(pos = line.IndexOf(',', pos))], CultureInfo.InvariantCulture);
+			int pair2Start = int.Parse(line[++pos..(pos = line.IndexOf('-', pos))], CultureInfo.InvariantCulture);
+			int pair2End = int.Parse(line[++pos..], CultureInfo.InvariantCulture);
 
 			if (pair1Start >= pair2Start && pair1End <= pair2End ||
 				pair1Start <= pair2Start && pair1End >= pair2End)

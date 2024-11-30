@@ -1,4 +1,4 @@
-﻿namespace JochCool.AdventOfCode.Year2020.Day09;
+namespace JochCool.AdventOfCode.Year2020.Day09;
 
 public static class Part1
 {
@@ -24,7 +24,7 @@ public static class Part1
 				Console.WriteLine($"Found {i} numbers in the file but expected at least {preambleSize}.");
 				return null;
 			}
-			currentNum = int.Parse(currentLine);
+			currentNum = int.Parse(currentLine, CultureInfo.InvariantCulture);
 			possibleNums.Enqueue(currentNum);
 			possibleNumsSorted[i] = currentNum; // we'll sort later
 		}
@@ -33,7 +33,7 @@ public static class Part1
 
 		while ((currentLine = inputReader.ReadLine()) is not null)
 		{
-			currentNum = int.Parse(currentLine);
+			currentNum = int.Parse(currentLine, CultureInfo.InvariantCulture);
 
 			// For every possible num, check if the other num that you can add to make currentNum exists
 			foreach (int possibleNum in possibleNumsSorted)
