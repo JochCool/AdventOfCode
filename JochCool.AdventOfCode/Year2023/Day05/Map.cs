@@ -24,15 +24,15 @@ class Map
 	}
 
 	// mapping logic for part 2
-	public BrokenNumberRange<long> this[BrokenNumberRange<long> values]
+	public BrokenIntegerRange<long> this[BrokenIntegerRange<long> values]
 	{
 		get
 		{
-			BrokenNumberRange<long> valuesClone = values.Clone();
-			BrokenNumberRange<long> result = new();
+			BrokenIntegerRange<long> valuesClone = values.Clone();
+			BrokenIntegerRange<long> result = new();
 			foreach (Line line in lines)
 			{
-				BrokenNumberRange<long> beingMapped = valuesClone.CreateSubset(line.sourceRangeStart, line.sourceRangeStart + line.rangeLength - 1);
+				BrokenIntegerRange<long> beingMapped = valuesClone.CreateSubset(line.sourceRangeStart, line.sourceRangeStart + line.rangeLength - 1);
 				valuesClone.ExceptWith(beingMapped);
 				beingMapped.Shift(line.destinationRangeStart - line.sourceRangeStart);
 				result.UnionWith(beingMapped);

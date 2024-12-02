@@ -2,33 +2,33 @@ using System.Diagnostics;
 
 namespace JochCool.AdventOfCode;
 
-public class BrokenNumberRange<T> : ISet<T>, IEquatable<BrokenNumberRange<T>> where T : IBinaryInteger<T>
+public class BrokenIntegerRange<T> : ISet<T>, IEquatable<BrokenIntegerRange<T>> where T : IBinaryInteger<T>
 {
 	Node? firstNode;
 
 	/// <summary>
 	/// Constructs an empty number range.
 	/// </summary>
-	public BrokenNumberRange()
+	public BrokenIntegerRange()
 	{
 	}
 
-	public BrokenNumberRange(T minInclusive, T maxInclusive)
+	public BrokenIntegerRange(T minInclusive, T maxInclusive)
 	{
 		firstNode = new(minInclusive, maxInclusive);
 	}
 
-	protected BrokenNumberRange(BrokenNumberRange<T> other)
+	protected BrokenIntegerRange(BrokenIntegerRange<T> other)
 	{
 		firstNode = other.firstNode?.Clone();
 	}
 
-	private BrokenNumberRange(Node? firstNode)
+	private BrokenIntegerRange(Node? firstNode)
 	{
 		this.firstNode = firstNode;
 	}
 
-	public T Size
+	public T Count
 	{
 		get
 		{
@@ -36,14 +36,14 @@ public class BrokenNumberRange<T> : ISet<T>, IEquatable<BrokenNumberRange<T>> wh
 			Node? node = firstNode;
 			while (node is not null)
 			{
-				result += node.Size;
+				result += node.Count;
 				node = node.next;
 			}
 			return result;
 		}
 	}
 
-	int ICollection<T>.Count => int.CreateChecked(Size);
+	int ICollection<T>.Count => int.CreateChecked(Count);
 	bool ICollection<T>.IsReadOnly => false;
 
 	public T Min => (firstNode ?? throw new InvalidOperationException()).MinInclusive;
@@ -83,7 +83,7 @@ public class BrokenNumberRange<T> : ISet<T>, IEquatable<BrokenNumberRange<T>> wh
 
 	public void AddRange(T minInclusive, T maxInclusive)
 	{
-		NumberRange<T>.ThrowIfMinMaxAreWrong(minInclusive, maxInclusive);
+		IntegerRange<T>.ThrowIfMinMaxAreWrong(minInclusive, maxInclusive);
 
 		Node? prevNode = null;
 		Node? node = firstNode;
@@ -133,7 +133,7 @@ public class BrokenNumberRange<T> : ISet<T>, IEquatable<BrokenNumberRange<T>> wh
 
 	public void RemoveRange(T minInclusive, T maxInclusive)
 	{
-		NumberRange<T>.ThrowIfMinMaxAreWrong(minInclusive, maxInclusive);
+		IntegerRange<T>.ThrowIfMinMaxAreWrong(minInclusive, maxInclusive);
 
 		Node? prevNode = null;
 		Node? node = firstNode;
@@ -196,7 +196,7 @@ public class BrokenNumberRange<T> : ISet<T>, IEquatable<BrokenNumberRange<T>> wh
 		firstNode = null;
 	}
 
-	public BrokenNumberRange<T> CreateSubset(T minInclusive, T maxInclusive)
+	public BrokenIntegerRange<T> CreateSubset(T minInclusive, T maxInclusive)
 	{
 		// Look for the node containing (or greater than) minInclusive
 		Node resultFirstNode;
@@ -251,7 +251,7 @@ public class BrokenNumberRange<T> : ISet<T>, IEquatable<BrokenNumberRange<T>> wh
 		}
 	}
 
-	public void UnionWith(BrokenNumberRange<T> other)
+	public void UnionWith(BrokenIntegerRange<T> other)
 	{
 		Node? node = other.firstNode;
 		while (node is not null)
@@ -269,7 +269,7 @@ public class BrokenNumberRange<T> : ISet<T>, IEquatable<BrokenNumberRange<T>> wh
 		}
 	}
 
-	public void ExceptWith(BrokenNumberRange<T> other)
+	public void ExceptWith(BrokenIntegerRange<T> other)
 	{
 		// TODO: this can definitely be optimized
 		Node? node = other.firstNode;
@@ -320,19 +320,19 @@ public class BrokenNumberRange<T> : ISet<T>, IEquatable<BrokenNumberRange<T>> wh
 		throw new NotImplementedException();
 	}
 
-	public bool Equals(BrokenNumberRange<T>? other)
+	public bool Equals(BrokenIntegerRange<T>? other)
 	{
 		throw new NotImplementedException();
 	}
 
-	public override bool Equals(object? obj) => Equals(obj as BrokenNumberRange<T>);
+	public override bool Equals(object? obj) => Equals(obj as BrokenIntegerRange<T>);
 
 	public override int GetHashCode()
 	{
 		throw new NotImplementedException();
 	}
 
-	public virtual BrokenNumberRange<T> Clone() => new(this);
+	public virtual BrokenIntegerRange<T> Clone() => new(this);
 
 	public Enumerator GetEnumerator() => new(this);
 
@@ -366,20 +366,60 @@ public class BrokenNumberRange<T> : ISet<T>, IEquatable<BrokenNumberRange<T>> wh
 		return builder.ToString();
 	}
 
-	class Node : NumberRange<T>
+	class Node
 	{
+		private IntegerRange<T> range;
 		internal Node? next;
 
-		public Node(T minInclusive, T maxExclusive) : base(minInclusive, maxExclusive)
+		public Node(T minInclusive, T maxInclusive) : this(new IntegerRange<T>(minInclusive, maxInclusive))
 		{
 		}
 
-		protected Node(Node other) : base(other)
+		public Node(IntegerRange<T> range)
 		{
+			this.range = range;
+		}
+
+		protected Node(Node other)
+		{
+			range = other.range;
 			next = other.next?.Clone();
 		}
 
-		public override Node Clone() => new(this);
+		public T MinInclusive
+		{
+			get => range.MinInclusive;
+			set => range.MinInclusive = value;
+		}
+
+		public T MaxInclusive
+		{
+			get => range.MaxInclusive;
+			set => range.MaxInclusive = value;
+		}
+
+		public T MinExclusive
+		{
+			get => range.MinExclusive;
+			set => range.MinExclusive = value;
+		}
+
+		public T MaxExclusive
+		{
+			get => range.MaxExclusive;
+			set => range.MaxExclusive = value;
+		}
+
+		public T Count => range.Count;
+
+		public void Shift(T amount)
+		{
+			range.Shift(amount);
+		}
+
+		public Node Clone() => new(this);
+
+		public override string ToString() => range.ToString();
 	}
 
 	public struct Enumerator : IEnumerator<T>
@@ -387,7 +427,7 @@ public class BrokenNumberRange<T> : ISet<T>, IEquatable<BrokenNumberRange<T>> wh
 		Node? currentNode;
 		T? current;
 
-		internal Enumerator(BrokenNumberRange<T> brokenNumberRange)
+		internal Enumerator(BrokenIntegerRange<T> brokenNumberRange)
 		{
 			currentNode = brokenNumberRange.firstNode;
 			if (currentNode is not null)

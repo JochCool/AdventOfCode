@@ -5,7 +5,7 @@ public static class Part2
 	public static string? Solve(TextReader inputReader)
 	{
 		string seedsLine = inputReader.ReadLine() ?? throw new FormatException("Input too short.");
-		BrokenNumberRange<long> seeds = new();
+		BrokenIntegerRange<long> seeds = new();
 		for (int i = "seeds: ".Length; i < seedsLine.Length; i++)
 		{
 			int endI = seedsLine.IndexOf(' ', i);

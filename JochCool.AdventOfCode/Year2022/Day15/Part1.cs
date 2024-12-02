@@ -8,7 +8,7 @@ public static class Part1
 		HashSet<int> beaconXs = [];
 
 		//List<TaxicabCircle> sensors = new();
-		BrokenNumberRange<int> xs = new();
+		BrokenIntegerRange<int> xs = new();
 
 		foreach (string line in inputReader.ReadLines())
 		{
@@ -59,7 +59,7 @@ public static class Part1
 			*/
 		}
 
-		int size = xs.Size;
+		int size = xs.Count;
 		int numbeacons = beaconXs.Count;
 		Console.WriteLine($"{size} squares reached, {numbeacons} beacons are there.");
 		return (size - numbeacons).ToInvariantString();
