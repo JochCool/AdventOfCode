@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace JochCool.AdventOfCode;
 
 static class StringUtil
@@ -67,5 +69,28 @@ static class StringUtil
 			digits = digits[1..];
 		}
 		return result;
+	}
+
+	public static int CountSubstring(string value, string substring)
+	{
+		int result = 0;
+		int i = 0;
+		while (true)
+		{
+			i = value.IndexOf(substring, i, StringComparison.Ordinal);
+			if (i == -1) return result;
+			result++;
+			i += substring.Length;
+		}
+	}
+
+	[return: NotNullIfNotNull(nameof(value))]
+	public static string? Reverse(string? value)
+	{
+		if (value == null) return null;
+
+		Span<char> chars = value.ToCharArray();
+		chars.Reverse();
+		return new string(chars);
 	}
 }
