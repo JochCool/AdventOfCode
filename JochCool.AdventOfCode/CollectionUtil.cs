@@ -38,6 +38,18 @@ static class CollectionUtil
 		}
 	}
 
+	public static bool IsSorted<T>(ReadOnlySpan<T> span, IComparer<T> comparer)
+	{
+		for (int i = 1; i < span.Length; i++)
+		{
+			if (comparer.Compare(span[i - 1], span[i]) > 0)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public static bool JaggedArraysEqual<T>(T[][] a, T[][] b) where T : IEquatable<T>
 	{
 		if (a.Length != b.Length) return false;
