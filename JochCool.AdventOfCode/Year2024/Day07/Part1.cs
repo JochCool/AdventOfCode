@@ -7,39 +7,20 @@ public static class Part1
 		return BothParts.Solve(inputReader, IsPossible);
 	}
 
-	internal static bool IsPossible(BigInteger testValue, BigInteger[] numbers)
+	private static bool IsPossible(BigInteger testValue, BigInteger accumulator, ReadOnlySpan<BigInteger> remainingNumbers)
 	{
-		// A possible combination of operators is represented by a binary integer.
-		// Each bit corresponds to a position between the numbers.
-		// A 0 means the operator is addition, a 1 means it is multiplication.
-
-		uint numPossibilities = 1u << (numbers.Length - 1);
-		for (uint operators = 0; operators < numPossibilities; operators++)
+		if (remainingNumbers.Length == 0)
 		{
-			if (ApplyOperations(numbers, operators) == testValue)
-			{
-				//Console.WriteLine(testValue);
-				return true;
-			}
+			return accumulator == testValue;
 		}
-		return false;
-	}
 
-	private static BigInteger ApplyOperations(BigInteger[] numbers, uint operators)
-	{
-		BigInteger result = numbers[0];
-		for (int i = 1; i < numbers.Length; i++)
+		// Optimization, because the accumulator can never decrease
+		if (accumulator > testValue)
 		{
-			uint mask = 1u << (i - 1);
-			if ((operators & mask) == 0)
-			{
-				result += numbers[i];
-			}
-			else
-			{
-				result *= numbers[i];
-			}
+			return false;
 		}
-		return result;
+
+		return IsPossible(testValue, accumulator + remainingNumbers[0], remainingNumbers[1..])
+			|| IsPossible(testValue, accumulator * remainingNumbers[0], remainingNumbers[1..]);
 	}
 }

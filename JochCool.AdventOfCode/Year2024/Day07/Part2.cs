@@ -7,61 +7,23 @@ public static class Part2
 		return BothParts.Solve(inputReader, IsPossible);
 	}
 
-	private static bool IsPossible(BigInteger target, BigInteger[] nums)
+	private static bool IsPossible(BigInteger testValue, BigInteger accumulator, ReadOnlySpan<BigInteger> remainingNumbers)
 	{
-		Span<Operator> operators = stackalloc Operator[nums.Length - 1];
-
-		while (true)
+		if (remainingNumbers.Length == 0)
 		{
-			if (ApplyOperations(nums, operators) == target)
-			{
-				return true;
-			}
-
-			if (!MoveNext(operators))
-			{
-				return false;
-			}
+			return accumulator == testValue;
 		}
-	}
 
-	private static bool MoveNext(Span<Operator> operators)
-	{
-		int operatorI = 0;
-		while (true)
+		// Optimization, because the accumulator can never decrease
+		if (accumulator > testValue)
 		{
-			if (operators[operatorI] == Operator.Concat)
-			{
-				operators[operatorI] = Operator.Add;
-				if (++operatorI == operators.Length)
-				{
-					return false;
-				}
-			}
-			else
-			{
-				operators[operatorI]++;
-				return true;
-			}
+			return false;
 		}
-	}
 
-	private static BigInteger ApplyOperations(BigInteger[] nums, ReadOnlySpan<Operator> operators)
-	{
-		BigInteger result = nums[0];
-		for (int i = 1; i < nums.Length; i++)
-		{
-			result = operators[i - 1] switch
-			{
-				Operator.Add => result + nums[i],
-				Operator.Multiply => result * nums[i],
-				Operator.Concat => Concat(result, nums[i]),
-				_ => throw new ArgumentException($"Unknown operator {(int)operators[i-1]}.", nameof(operators))
-			};
-		}
-		return result;
+		return IsPossible(testValue, accumulator + remainingNumbers[0], remainingNumbers[1..])
+			|| IsPossible(testValue, accumulator * remainingNumbers[0], remainingNumbers[1..])
+			|| IsPossible(testValue, Concat(accumulator, remainingNumbers[0]), remainingNumbers[1..]);
 	}
-
 	public static BigInteger Concat(BigInteger left, BigInteger right)
 	{
 		BigInteger multiplier = 10;
@@ -72,11 +34,4 @@ public static class Part2
 
 		return left * multiplier + right;
 	}
-}
-
-enum Operator
-{
-	Add,
-	Multiply,
-	Concat
 }
