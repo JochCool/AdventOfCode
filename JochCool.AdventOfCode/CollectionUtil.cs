@@ -38,6 +38,14 @@ static class CollectionUtil
 		}
 	}
 
+	public static bool IsInBounds<T>(this T[,] grid, Vector<int> position)
+	{
+		unchecked
+		{
+			return (uint)position.Y < (uint)grid.GetLength(0) && (uint)position.X < (uint)grid.GetLength(1);
+		}
+	}
+
 	public static bool IsSorted<T>(ReadOnlySpan<T> span, IComparer<T> comparer)
 	{
 		for (int i = 1; i < span.Length; i++)
@@ -109,6 +117,23 @@ static class CollectionUtil
 			for (int x = 0; x < line.Length; x++)
 			{
 				if (line[x] == value)
+				{
+					return new(x, y);
+				}
+			}
+		}
+		throw new ArgumentException($"{value} is not in the grid.", nameof(value));
+	}
+
+	public static Vector<int> PositionOf(this char[,] grid, char value)
+	{
+		int height = grid.GetLength(0);
+		int width = grid.GetLength(1);
+		for (int y = 0; y < height; y++)
+		{
+			for (int x = 0; x < width; x++)
+			{
+				if (grid[y, x] == value)
 				{
 					return new(x, y);
 				}

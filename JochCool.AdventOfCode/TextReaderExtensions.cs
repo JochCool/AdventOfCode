@@ -84,4 +84,33 @@ static class TextReaderExtensions
 		if (group.Count != 0)
 			yield return group.ToArray();
 	}
+
+	// Result is indexed by grid[y, x]
+	public static char[,] ReadCharGrid(this TextReader reader, char defaultChar = '\0')
+	{
+		int width = 0;
+		List<string> lines = [];
+		string? line;
+		while (!string.IsNullOrEmpty(line = reader.ReadLine()))
+		{
+			if (width < line.Length)
+			{
+				width = line.Length;
+			}
+
+			lines.Add(line);
+		}
+
+		int height = lines.Count;
+		char[,] result = new char[height, width];
+		for (int y = 0; y < height; y++)
+		{
+			line = lines[y];
+			for (int x = 0; x < width; x++)
+			{
+				result[y, x] = x < line.Length ? line[x] : defaultChar;
+			}
+		}
+		return result;
+	}
 }
