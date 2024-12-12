@@ -162,4 +162,17 @@ static class CollectionUtil
 			Console.WriteLine(line);
 		}
 	}
+
+	public static void AddToKey<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, TValue value)
+		where TKey : notnull
+		where TValue : IAdditionOperators<TValue, TValue, TValue>
+	{
+		if (!dictionary.TryAdd(key, value))
+		{
+			checked
+			{
+				dictionary[key] += value;
+			}
+		}
+	}
 }

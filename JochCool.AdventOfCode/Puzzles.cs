@@ -144,6 +144,8 @@ public static class Puzzles
 		new(2024, 9, 2, Year2024.Day09.Part2.Solve),
 		new(2024, 10, 1, Year2024.Day10.Part1.Solve),
 		new(2024, 10, 2, Year2024.Day10.Part2.Solve),
+		new(2024, 11, 1, Year2024.Day11.Part1.Solve),
+		new(2024, 11, 2, Year2024.Day11.Part2.Solve),
 	];
 
 	public static Puzzle? Get(int year, int day, int part)
