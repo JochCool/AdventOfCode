@@ -4,6 +4,12 @@ using Xunit.Sdk;
 
 namespace JochCool.AdventOfCode.Test;
 
+/*
+This attribute is used in per-day unit tests, which are gitignored in this repository.
+It specifies the expected output of puzzle solutions for a specific input file.
+The input file must be in a subfolder of the test class called "Inputs", and must be compiled as an embedded resource.
+*/
+
 class PuzzleDataAttribute : DataAttribute
 {
 	public string Answer { get; }
